@@ -3,8 +3,8 @@ _Mi tesis_
 
 === Links ===
 *Weka 3*
-   * Oficial site http://www.cs.waikato.ac.nz/ml/weka/ Oficial site
-   * Wikipedia http://en.wikipedia.org/wiki/Weka_(machine_learning)
+   * Oficial site - http://www.cs.waikato.ac.nz/ml/weka/
+   * Wikipedia - [http://en.wikipedia.org/wiki/Weka_(machine_learning) http://en.wikipedia.org/wiki/Weka_(machine_learning)]
 
 *Colección de datos CABS120k08*
    * Oficial site http://www.michael-noll.com/wiki/CABS120k08
