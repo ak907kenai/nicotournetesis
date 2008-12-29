@@ -7,10 +7,10 @@ _Mi tesis_
    * Wikipedia - [http://en.wikipedia.org/wiki/Weka_(machine_learning) http://en.wikipedia.org/wiki/Weka_(machine_learning)]
 
 *Colección de datos CABS120k08*
-   * Oficial site http://www.michael-noll.com/wiki/CABS120k08
+   * Oficial site - http://www.michael-noll.com/wiki/CABS120k08
 
 
-
+----
 
 
 === Referencias ===
