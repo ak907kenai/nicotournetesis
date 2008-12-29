@@ -1,11 +1,9 @@
-#Información general del proyecto.
-
-= Introducción =
+=== Introducción ===
 
 Nada.
 
 
-= Links =
+=== Links ===
 
 Weka 3
   * [http://www.cs.waikato.ac.nz/ml/weka/ Oficial site]
