@@ -1,10 +1,17 @@
+
 _Mi tesis_
 
 
 === Links ===
 *Weka 3*
-[http://www.cs.waikato.ac.nz/ml/weka/ Oficial site]
+   * [http://www.cs.waikato.ac.nz/ml/weka/ Oficial site]
 [http://www.google.com/url?sa=t&source=web&ct=res&cd=1&url=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FWeka_(machine_learning)&ei=UCtZSe23AYOftwfGr4znBg&usg=AFQjCNHAoeChJzl7qFPxAVcnYQPSlP9A8g&sig2=mCO5OGFoVn9b9UkSOYX1Rg Wikipedia]
 
 *Colección de datos*
-[http://www.michael-noll.com/wiki/CABS120k08 Oficial site]
+   * [http://www.michael-noll.com/wiki/CABS120k08 Oficial site]
+
+
+
+
+=== Referencias ===
+   * Se usó CABS120k08 para mi investigación. El paper está en: http://www.michael-noll.com/blog/2008/09/05/the-metadata-triumvirate-social-annotations-anchor-texts-and-search-queries/
