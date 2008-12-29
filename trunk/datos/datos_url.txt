@@ -1,0 +1,4 @@
+Y esta es la coleccion de datos sobre la que charlamos, tiene una
+pequeña descripción en la página:
+
+http://www.michael-noll.com/wiki/CABS120k08
