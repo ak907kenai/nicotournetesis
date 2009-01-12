@@ -1,4 +1,4 @@
-# Pasar la CAB120k data (solo una porción) a csv, en un formato que pueda ser procesado por Weka. Probar diferentes alternativas.
-# Correr los algoritmos de clasificación y testear resultados.
-# Convertir la CAB120k data (completo) al formato elegido.
-# Correr nuevamente los algoritmos de clasificación.
+  # Pasar la CAB120k data (solo una porción) a csv, en un formato que pueda ser procesado por Weka. Probar diferentes alternativas.
+  # Correr los algoritmos de clasificación y testear resultados.
+  # Convertir la CAB120k data (completo) al formato elegido.
+  # Correr nuevamente los algoritmos de clasificación.
