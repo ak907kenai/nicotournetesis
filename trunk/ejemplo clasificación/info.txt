@@ -1,0 +1,3 @@
+La clasificación está hecha siguiendo este ejemplo:
+
+http://maya.cs.depaul.edu/~classes/ect584/WEKA/classify.html
