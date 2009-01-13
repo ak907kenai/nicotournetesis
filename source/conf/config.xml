@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config tipo="aaa">
+
+	<datafile>D:\\workspace\\weka\\data\\datos_small.xml</datafile>
+
+	<destfile>D:\\workspace\\weka\\data\\dest.csv</destfile>
+	
+	<csvcolumns>url,search/query,category/name,inlink/anchor_text,bookmark/tags</csvcolumns>
+	
+	<docsMax>10</docsMax>
+	
+</config>
