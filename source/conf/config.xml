@@ -1,12 +1,20 @@
 <?xml version="1.0"?>
 <config tipo="aaa">
 
-	<datafile>D:\\workspace\\weka\\data\\datos_small.xml</datafile>
+	<datafile2>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\datos_small.xml</datafile2>
 
-	<destfile>D:\\workspace\\weka\\data\\dest.csv</destfile>
+	<datafile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\CABS120k08-1.0.xml</datafile>
+
+	<destfile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\dest.csv</destfile>
 	
-	<csvcolumns>url,search/query,category/name,inlink/anchor_text,bookmark/tags</csvcolumns>
+	<arfffile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\data120k.arff</arfffile>
 	
-	<docsMax>10</docsMax>
+	<arffdatafile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\onlydata120k.arff</arffdatafile>
+	
+	<csvcolumns>url,search/query,inlink/anchor_text,bookmark/tags,category/name</csvcolumns>
+	
+	<arffattributes>url numeric;query real;class</arffattributes>
+	
+	<docsMax>100</docsMax>
 	
 </config>
