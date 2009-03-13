@@ -19,7 +19,13 @@ public class ConfigParser {
 
 	public static String destFile = null;
 
+	public static String arffFile = null;
+	
+	public static String arffDataFile = null;
+	
 	public static String csvColumns = null;
+	
+	public static String arffAttributes= null;
 	
 	public static int docsMax = 0;
 	
@@ -47,6 +53,15 @@ public class ConfigParser {
 
 			// Set csvColumns property
 			setCsvColumns(raiz.getChild("csvcolumns").getText());
+			
+			// Set arfffile path property
+			setArffFile(raiz.getChild("arfffile").getText());
+
+			// Set arff data file property
+			setArffDataFile(raiz.getChild("arffdatafile").getText());
+			
+			// Set arff attributes property
+			setArffAttributes(raiz.getChild("arffattributes").getText());
 
 			// Set docsMax property
 			setDocsMax(Integer.parseInt(raiz.getChild("docsMax").getText()));
@@ -97,7 +112,47 @@ public class ConfigParser {
 	public static void setCsvColumns(String csvColumns) {
 		ConfigParser.csvColumns = csvColumns;
 	}
+	
+	// Returns arff file
+	public static String getArffFile() {
+		if (arffFile == null) {
+			parse();
+		}
+		return arffFile;
+	}
 
+	// Set arff file
+	public static void setArffFile(String arffFile) {
+		ConfigParser.arffFile = arffFile;
+	}
+
+	
+	// Returns arff data file
+	public static String getArffDataFile() {
+		if (arffDataFile == null) {
+			parse();
+		}
+		return arffDataFile;
+	}
+
+	// Set arff data file
+	public static void setArffDataFile(String arffDataFile) {
+		ConfigParser.arffDataFile = arffDataFile;
+	}
+	
+	// Returns arff attributes
+	public static String getArffAttributes() {
+		if (arffAttributes == null) {
+			parse();
+		}
+		return arffAttributes;
+	}
+
+	// Set arff file
+	public static void setArffAttributes(String arffAttributes) {
+		ConfigParser.arffAttributes = arffAttributes;
+	}
+	
 	// Returns the docs max
 	public static int getDocsMax() {
 		return docsMax;

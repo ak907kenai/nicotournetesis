@@ -14,6 +14,8 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
 
+import encoder.CategoryEncoder;
+
 public class Convert2Arff extends DefaultHandler {
 
 	private static String arffLine = "";
@@ -29,9 +31,12 @@ public class Convert2Arff extends DefaultHandler {
 	private static int docsMax;
 
 	private static BufferedWriter writer;
+	
+	private CategoryEncoder categoryEncoder;
 
 	public Convert2Arff() {
 		super();
+		categoryEncoder = new CategoryEncoder();
 	}
 
 	public static void main(String args[]) throws Exception {
@@ -66,7 +71,10 @@ public class Convert2Arff extends DefaultHandler {
 			String arffAttributes[] = ConfigParser.getArffAttributes().split(
 					";");
 			for (int i = 0; i < arffAttributes.length; i++) {
-				writer.append("@attribute " + arffAttributes[i]);
+				if (arffAttributes[i].equals("class"))
+					writer.append("@attribute " + arffAttributes[i] + " " + categoryEncoder.nominal());
+				else
+					writer.append("@attribute " + arffAttributes[i]);
 				writer.newLine();
 			}
 			
@@ -123,6 +131,7 @@ public class Convert2Arff extends DefaultHandler {
 		// Close the file
 		writer.flush();
 		writer.close();
+		
 	}
 
 	/**
@@ -141,17 +150,18 @@ public class Convert2Arff extends DefaultHandler {
 
 			if (qName.equals("document") && (url.equals(""))) {
 				System.out.println(atts.getValue(0));
-				url += atts.getValue(0);
+				url = atts.getValue(0);
 			}
 
 			if (qName.equals("category") && (category.equals(""))) {
 				System.out.println(atts.getValue(0));
-				category += this.removeSpaces(atts.getValue(0));
+				//category += this.removeSpaces(atts.getValue(0));
+				category = categoryEncoder.encode(this.removeSpaces(atts.getValue(0)));
 			}
 
 			if (qName.equals("search") && (search.equals(""))) {
 				System.out.println(atts.getValue(0));
-				search += "'" + this.removeSpaces(atts.getValue(0));
+				search = "'" + this.removeSpaces(atts.getValue(0));
 			}
 
 		}
@@ -165,7 +175,7 @@ public class Convert2Arff extends DefaultHandler {
 		if (name.equals("document")) {
 			docsCount++;
 			try {
-				writer.append(docsCount + "," + 1 + "," + 2);
+				writer.append(docsCount + "," + 1 + "," + category);
 				writer.newLine();
 			} catch (IOException e) {
 				e.printStackTrace();
