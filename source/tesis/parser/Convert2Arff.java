@@ -18,20 +18,20 @@ import encoder.CategoryEncoder;
 
 public class Convert2Arff extends DefaultHandler {
 
-	private static String arffLine = "";
+	private String arffLine = "";
 
-	private static String category;
-	
-	private static String search;
-	
-	private static String url;
+	private String category;
 
-	private static int docsCount;
+	private String search;
 
-	private static int docsMax;
+	private String url;
+
+	private int docsCount;
+
+	private int docsMax;
 
 	private static BufferedWriter writer;
-	
+
 	private CategoryEncoder categoryEncoder;
 
 	public Convert2Arff() {
@@ -45,10 +45,10 @@ public class Convert2Arff extends DefaultHandler {
 
 		// Write arff data
 		handler.writeARFFData(handler);
-		
+
 		// Write arff attributes
 		handler.writeARFFHeader();
-		
+
 		System.out.println("Finished!");
 
 	}
@@ -58,10 +58,11 @@ public class Convert2Arff extends DefaultHandler {
 	 */
 	public void writeARFFHeader() {
 		try {
-			
+
 			// Create the arff writer
-			writer = new BufferedWriter(new FileWriter(ConfigParser.getArffFile()));
-			
+			writer = new BufferedWriter(new FileWriter(ConfigParser
+					.getArffFile()));
+
 			// Relation
 			writer.append("@relation docs");
 			writer.newLine();
@@ -72,30 +73,30 @@ public class Convert2Arff extends DefaultHandler {
 					";");
 			for (int i = 0; i < arffAttributes.length; i++) {
 				if (arffAttributes[i].equals("class"))
-					writer.append("@attribute " + arffAttributes[i] + " " + categoryEncoder.nominal());
+					writer.append("@attribute " + arffAttributes[i] + " "
+							+ categoryEncoder.nominal());
 				else
 					writer.append("@attribute " + arffAttributes[i]);
 				writer.newLine();
 			}
-			
+
 			writer.newLine();
 			writer.newLine();
-			
-			
+
 			// Create reader for file to append from
-			BufferedReader in = new BufferedReader(new FileReader(ConfigParser.getArffDataFile()));
+			BufferedReader in = new BufferedReader(new FileReader(ConfigParser
+					.getArffDataFile()));
 			String str;
 			while ((str = in.readLine()) != null) {
 				writer.append(str);
 				writer.newLine();
 			}
 			in.close();
-			
-			
+
 			// Close the file
 			writer.flush();
 			writer.close();
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -112,12 +113,17 @@ public class Convert2Arff extends DefaultHandler {
 			IOException {
 
 		// Create the arff writer
-		System.out.println(ConfigParser.getArffDataFile());
-		writer = new BufferedWriter(new FileWriter(ConfigParser.getArffDataFile()));
-		
+		//System.out.println(ConfigParser.getArffDataFile());
+		writer = new BufferedWriter(new FileWriter(ConfigParser
+				.getArffDataFile()));
+
 		writer.append("@data");
 		writer.newLine();
-
+		
+		docsCount = 1;
+		docsMax = ConfigParser.getDocsMax();
+		System.out.println(docsMax);
+		
 		// Create XML Parser and handler
 		XMLReader xr = XMLReaderFactory.createXMLReader();
 		xr.setContentHandler(handler);
@@ -127,11 +133,11 @@ public class Convert2Arff extends DefaultHandler {
 		String xmlfile = ConfigParser.getDataFile();
 		FileReader r = new FileReader(xmlfile);
 		xr.parse(new InputSource(r));
-		
+
 		// Close the file
 		writer.flush();
 		writer.close();
-		
+
 	}
 
 	/**
@@ -140,54 +146,62 @@ public class Convert2Arff extends DefaultHandler {
 	public void startElement(String uri, String name, String qName,
 			Attributes atts) {
 
-		if (name.equals("document")) {
-			category = "";
-			search = "";
-			url = "";
-		}
+		if (docsCount <= docsMax) {
 
-		if (atts.getValue(0) != null) {
-
-			if (qName.equals("document") && (url.equals(""))) {
-				System.out.println(atts.getValue(0));
-				url = atts.getValue(0);
+			if (name.equals("document")) {
+				category = "";
+				search = "";
+				url = "";
 			}
 
-			if (qName.equals("category") && (category.equals(""))) {
-				System.out.println(atts.getValue(0));
-				//category += this.removeSpaces(atts.getValue(0));
-				category = categoryEncoder.encode(this.removeSpaces(atts.getValue(0)));
-			}
+			if (atts.getValue(0) != null) {
 
-			if (qName.equals("search") && (search.equals(""))) {
-				System.out.println(atts.getValue(0));
-				search = "'" + this.removeSpaces(atts.getValue(0));
-			}
+				/*if (qName.equals("document") && (url.equals(""))) {
+					System.out.println(atts.getValue(0));
+					url = atts.getValue(0);
+				}*/
 
+				if (qName.equals("category") && (category.equals(""))) {
+					//System.out.println(atts.getValue(0));
+					category = categoryEncoder.encode(this.removeSpaces(atts
+							.getValue(0)));
+				}
+
+				if (qName.equals("search") && (search.equals(""))) {
+					//System.out.println(atts.getValue(0));
+					search = "'" + this.removeSpaces(atts.getValue(0));
+				}
+
+			}
 		}
 	}
 
-	
 	/**
 	 * End element
 	 */
 	public void endElement(String uri, String name, String qName) {
-		if (name.equals("document")) {
-			docsCount++;
-			try {
-				writer.append(docsCount + "," + 1 + "," + category);
-				writer.newLine();
-			} catch (IOException e) {
-				e.printStackTrace();
+
+	//	System.out.println("doc #: " + docsCount);
+	//	System.out.println("max #: " + docsMax);
+		
+		if (docsCount < docsMax) {
+			if (name.equals("document")) {
+				System.out.println("doc #: " + docsCount);
+				docsCount++;
+				try {
+					writer.append(1 + "," + category);
+					writer.newLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				arffLine = "";
 			}
-			arffLine = "";
 		}
 	}
 
-
-	
 	/**
 	 * Remove spaces from a string
+	 * 
 	 * @param s
 	 * @return String without spaces
 	 */
