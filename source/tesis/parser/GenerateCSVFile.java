@@ -78,19 +78,19 @@ public class GenerateCSVFile {
 					writer.append('\n');
 			}
 
-			// Iterate in the docs
+			// Iterate into the docs
 			while (docs.hasNext() && cursor < MAX) {
 				Element e = (Element) docs.next();
 
 				// For each column
 				for (int i = 0; i < columns.length; i++) {
 					String column = columns[i];
-
+					String columnValue = null;
 					// If only one column
 					if (!column.contains("/")) {
 						System.out.println(column + " = "
 								+ e.getAttribute(column).getValue());
-						writer.append(e.getAttribute(column).getValue());
+						columnValue = e.getAttribute(column).getValue();
 					} else {
 						// Get the subcolumn values
 						String subcolumns[] = column.split("/");
@@ -100,10 +100,18 @@ public class GenerateCSVFile {
 							Element e2 = (Element) i2.next();
 							System.out.println(e2.getAttribute(subcolumns[1])
 									.getValue());
-							writer.append(e2.getAttribute(subcolumns[1]).getValue());	
+							columnValue += e2.getAttribute(subcolumns[1]).getValue() + " ";
 						}
 
 					}
+					
+					if (columnValue == null)
+						writer.append(" ");
+					else {
+						columnValue = columnValue.replaceAll(",", "");
+						writer.append(columnValue);
+					}
+					
 					if (i + 1 < columns.length)
 						writer.append(',');
 					else
