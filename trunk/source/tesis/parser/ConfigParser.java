@@ -20,15 +20,16 @@ public class ConfigParser {
 	public static String destFile = null;
 
 	public static String arffFile = null;
-	
+
 	public static String arffDataFile = null;
-	
+
 	public static String csvColumns = null;
-	
-	public static String arffAttributes= null;
-	
+
+	public static String arffAttributes = null;
+
 	public static int docsMax = 0;
-	
+
+	public static int minCatCount = 0;
 
 	// Parse the config.xml file
 	public static void parse() {
@@ -53,19 +54,23 @@ public class ConfigParser {
 
 			// Set csvColumns property
 			setCsvColumns(raiz.getChild("csvcolumns").getText());
-			
+
 			// Set arfffile path property
 			setArffFile(raiz.getChild("arfffile").getText());
 
 			// Set arff data file property
 			setArffDataFile(raiz.getChild("arffdatafile").getText());
-			
+
 			// Set arff attributes property
 			setArffAttributes(raiz.getChild("arffattributes").getText());
 
 			// Set docsMax property
 			setDocsMax(Integer.parseInt(raiz.getChild("docsMax").getText()));
-			
+
+			// Set minCatCount property
+			setMinCatCount(Integer.parseInt(raiz.getChild("mincatcount")
+					.getText()));
+
 		} catch (JDOMException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -112,7 +117,7 @@ public class ConfigParser {
 	public static void setCsvColumns(String csvColumns) {
 		ConfigParser.csvColumns = csvColumns;
 	}
-	
+
 	// Returns arff file
 	public static String getArffFile() {
 		if (arffFile == null) {
@@ -126,7 +131,6 @@ public class ConfigParser {
 		ConfigParser.arffFile = arffFile;
 	}
 
-	
 	// Returns arff data file
 	public static String getArffDataFile() {
 		if (arffDataFile == null) {
@@ -139,7 +143,7 @@ public class ConfigParser {
 	public static void setArffDataFile(String arffDataFile) {
 		ConfigParser.arffDataFile = arffDataFile;
 	}
-	
+
 	// Returns arff attributes
 	public static String getArffAttributes() {
 		if (arffAttributes == null) {
@@ -152,18 +156,30 @@ public class ConfigParser {
 	public static void setArffAttributes(String arffAttributes) {
 		ConfigParser.arffAttributes = arffAttributes;
 	}
-	
-	// Returns the docs max
-	public static int getDocsMax() {
-		return docsMax;
-	}
 
 	// Returns the docs max
-	public static void setDocsMax(int docsMax) {
+	public static int getDocsMax() {
 		if (docsMax == 0) {
 			parse();
 		}
+		return docsMax;
+	}
+
+	// Set doc max
+	public static void setDocsMax(int docsMax) {
 		ConfigParser.docsMax = docsMax;
 	}
 
+	// Returns min cat count
+	public static int getMinCatCount() {
+		if (minCatCount == 0) {
+			parse();
+		}
+		return minCatCount;
+	}
+
+	// Set min cat count
+	public static void setMinCatCount(int minCatCount) {
+		ConfigParser.minCatCount = minCatCount;
+	}
 }
