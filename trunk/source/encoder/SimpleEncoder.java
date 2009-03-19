@@ -19,6 +19,9 @@ public class SimpleEncoder {
 		encoded.append(indexOfO);
 		encoded.append(indexOfU);
 	
+		if (encoded.toString().equals("19211"))
+			System.out.println(text);
+		
 		return encoded.toString();
 	}
 	
