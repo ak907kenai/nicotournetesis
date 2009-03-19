@@ -7,14 +7,16 @@
 
 	<destfile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\dest.csv</destfile>
 	
-	<arfffile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\data05k.arff</arfffile>
+	<arfffile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\data25k.arff</arfffile>
 	
-	<arffdatafile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\onlydata120k.arff</arffdatafile>
+	<arffdatafile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\onlydata.arff</arffdatafile>
 	
 	<csvcolumns>url,search/query,inlink/anchor_text,bookmark/tags,category/name</csvcolumns>
 	
 	<arffattributes>query real;class</arffattributes>
 	
-	<docsMax>1000</docsMax>
+	<docsMax>130000</docsMax>
+	
+	<mincatcount>100</mincatcount>
 	
 </config>
