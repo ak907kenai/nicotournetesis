@@ -2,11 +2,9 @@ package tesis.parser;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -16,7 +14,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
 
 import encoder.CategoryEncoder;
-import encoder.QueryEncoder;
+import encoder.DataEncoder;
 import filter.CategoryDataFilter;
 import filter.DataFilter;
 
@@ -25,6 +23,8 @@ public class ArffConverter extends DefaultHandler {
 	private String category;
 
 	private String query;
+	
+	private String anchorText;
 
 	private int docsCount;
 
@@ -34,8 +34,10 @@ public class ArffConverter extends DefaultHandler {
 
 	protected CategoryEncoder categoryEncoder;
 
-	protected QueryEncoder queryEncoder;
+	protected DataEncoder queryEncoder;
 	
+	protected DataEncoder anchorTextEncoder;
+
 	protected DataFilter filter;
 
 	public ArffConverter() {
@@ -43,22 +45,24 @@ public class ArffConverter extends DefaultHandler {
 		filter = null;
 		iniEncoders();
 	}
-	
+
 	public void iniEncoders() {
 		categoryEncoder = new CategoryEncoder();
-		queryEncoder = new QueryEncoder();		
+		queryEncoder = new DataEncoder();
+		anchorTextEncoder = new DataEncoder();
 	}
 
 	/**
 	 * Write ARFF attributes
-	 * @throws SAXException 
+	 * 
+	 * @throws SAXException
 	 */
 	public void writeARFFHeader() throws SAXException {
 		try {
 
 			// Read data from xml file
 			this.writeTemporalData();
-			
+
 			// Create the arff writer
 			writer = new BufferedWriter(new FileWriter(ConfigParser
 					.getArffFile()));
@@ -79,37 +83,28 @@ public class ArffConverter extends DefaultHandler {
 					writer.append("@attribute " + arffAttributes[i]);
 				writer.newLine();
 			}
-			
-			writer.newLine();
-			writer.newLine();
 
-			// Close the file
-			//writer.flush();
-			//writer.close();
+			writer.newLine();
+			writer.newLine();
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	/**
-	 * Write data in the ARFF file 
-	 *
+	 * Write data in the ARFF file
+	 * 
 	 */
 	public void writeARFFData() {
 
 		try {
-			
-			// Create the arff writer
-			/*writer = new BufferedWriter(new FileWriter(ConfigParser
-					.getArffFile()));*/
-			
+
 			writer.append("@data");
 			writer.newLine();
-			
+
 			int instancesCount = 0;
-			
+
 			// Create reader for file to append from
 			BufferedReader in = new BufferedReader(new FileReader(ConfigParser
 					.getArffDataFile()));
@@ -119,23 +114,23 @@ public class ArffConverter extends DefaultHandler {
 					if (filter.eval(str)) {
 						writer.append(str);
 						writer.newLine();
-						
+
 						instancesCount++;
 					}
 				}
 			}
 			in.close();
-			
+
 			// Close the file
 			writer.flush();
 			writer.close();
-			
+
 			System.out.println("Instances: " + instancesCount);
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
@@ -143,8 +138,7 @@ public class ArffConverter extends DefaultHandler {
 	 * 
 	 * @throws SAXException
 	 */
-	public void writeTemporalData() throws SAXException,
-			IOException {
+	public void writeTemporalData() throws SAXException, IOException {
 
 		// Create the arff writer
 		writer = new BufferedWriter(new FileWriter(ConfigParser
@@ -181,21 +175,32 @@ public class ArffConverter extends DefaultHandler {
 			if (name.equals("document")) {
 				category = "";
 				query = "";
+				anchorText = "";
 			}
 
 			if (atts.getValue(0) != null) {
 
 				// Category
 				if (qName.equals("category") && (category.equals(""))) {
-					category = categoryEncoder.encode(this.removeSpaces(atts
-							.getValue(0)));
+					category = categoryEncoder.encode(this
+							.removeSpecialChars(atts.getValue(0)));
 				}
 
 				// Query (search)
 				if (qName.equals("search") && (query.equals(""))) {
-					query = queryEncoder.encode(this.removeSpaces(atts
+					query = queryEncoder.encode(this.removeSpecialChars(atts
 							.getValue(0)));
 				}
+				
+				// Anchor text
+				if (qName.equals("inlink") && (anchorText.equals(""))) {
+				/*	anchorText = anchorTextEncoder.encode(this.removeSpecialChars(atts
+							.getValue(0)));*/
+					
+					String text = this.removeSpecialChars(atts
+							.getValue(0));
+					anchorText = anchorTextEncoder.encode(text);
+				}				
 
 			}
 		}
@@ -213,7 +218,10 @@ public class ArffConverter extends DefaultHandler {
 					if ((query == null) || (query.equals(""))
 							|| (query.equals(" ")))
 						query = "?";
-					writer.append(query + "," + category);
+					if ((anchorText == null) || (anchorText.equals(""))
+							|| (anchorText.equals(" ")))
+						anchorText = "?";					
+					writer.append(query + "," + anchorText + "," + category);
 					writer.newLine();
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -224,22 +232,28 @@ public class ArffConverter extends DefaultHandler {
 	}
 
 	/**
-	 * Remove spaces from a string
+	 * Remove special chars
 	 * 
-	 * @param s
-	 * @return String without spaces
+	 * @param text
+	 * @param charsToKeep
+	 * @return
 	 */
-	public String removeSpaces(String s) {
-		StringTokenizer st = new StringTokenizer(s, " ", false);
-		String t = "";
-		while (st.hasMoreElements())
-			t += st.nextElement();
-		return t;
+	public String removeSpecialChars(String text) {
+		text = text.toLowerCase();
+		String charsToKeep = "abcdefghijklmnopqrstuvwxyz";
+		StringBuffer buffer = new StringBuffer();
+		for (int i = 0; i < text.length(); i++) {
+			char ch = text.charAt(i);
+			if (charsToKeep.indexOf(ch) > -1) {
+				buffer.append(ch);
+			}
+		}
+		return buffer.toString();
 	}
 
-	
 	/**
 	 * Set a Data Filter instance
+	 * 
 	 * @param filter
 	 */
 	public void setDataFilter(CategoryDataFilter filter) {
