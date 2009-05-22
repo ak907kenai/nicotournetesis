@@ -33,3 +33,4 @@ _Mi tesis_
    * Web directory en Wikipedia - [http://en.wikipedia.org/wiki/Web_directory http://en.wikipedia.org/wiki/Web_directory]
    * A brief history of the Yahoo! Directory - [http://www.websearchworkshop.co.uk/yahoo_directory.php http://www.websearchworkshop.co.uk/yahoo_directory.php]
    * Yahoo! Directory en Wikipedia - [http://en.wikipedia.org/wiki/Yahoo!_Directory http://en.wikipedia.org/wiki/Yahoo!_Directory]
+   * Automated submission web directories en Wikipedia - [http://en.wikipedia.org/wiki/Automated_submission_web_directories]
