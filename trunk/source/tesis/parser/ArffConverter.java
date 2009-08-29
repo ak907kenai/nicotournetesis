@@ -13,6 +13,7 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
 
+import tesis.utilities.StringUtilities;
 import encoder.CategoryEncoder;
 import encoder.DataEncoder;
 import filter.CategoryDataFilter;
@@ -22,9 +23,11 @@ public class ArffConverter extends DefaultHandler {
 
 	private String category;
 
-	private String query;
-	
-	private String anchorText;
+	private StringBuffer querySB;
+
+	private StringBuffer anchorTextSB;
+
+	private StringBuffer tagSB;
 
 	private int docsCount;
 
@@ -35,8 +38,10 @@ public class ArffConverter extends DefaultHandler {
 	protected CategoryEncoder categoryEncoder;
 
 	protected DataEncoder queryEncoder;
-	
+
 	protected DataEncoder anchorTextEncoder;
+
+	protected DataEncoder tagEncoder;
 
 	protected DataFilter filter;
 
@@ -50,6 +55,7 @@ public class ArffConverter extends DefaultHandler {
 		categoryEncoder = new CategoryEncoder();
 		queryEncoder = new DataEncoder();
 		anchorTextEncoder = new DataEncoder();
+		tagEncoder = new DataEncoder();
 	}
 
 	/**
@@ -73,14 +79,9 @@ public class ArffConverter extends DefaultHandler {
 			writer.newLine();
 
 			// Attributes
-			String arffAttributes[] = ConfigParser.getArffAttributes().split(
-					";");
+			String arffAttributes[] = ConfigParser.getArffAttributes();
 			for (int i = 0; i < arffAttributes.length; i++) {
-				if (arffAttributes[i].equals("class"))
-					writer.append("@attribute " + arffAttributes[i] + " "
-							+ categoryEncoder.nominal());
-				else
-					writer.append("@attribute " + arffAttributes[i]);
+				writer.append("@attribute " + arffAttributes[i]);
 				writer.newLine();
 			}
 
@@ -127,6 +128,11 @@ public class ArffConverter extends DefaultHandler {
 
 			System.out.println("Instances: " + instancesCount);
 
+			System.out.println("Categories: "
+					+ categoryEncoder.getCategories().size());
+
+			System.out.println("Documents: " + docsCount);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -146,7 +152,7 @@ public class ArffConverter extends DefaultHandler {
 
 		docsCount = 1;
 		docsMax = ConfigParser.getDocsMax();
-		System.out.println(docsMax);
+		System.out.println("Docs to process: " + docsMax);
 
 		// Create XML Parser and handler
 		XMLReader xr = XMLReaderFactory.createXMLReader();
@@ -172,38 +178,57 @@ public class ArffConverter extends DefaultHandler {
 
 		if (docsCount <= docsMax) {
 
-			if (name.equals("document")) {
+			// Parse new document
+			if (name.equals(ParserConstants.DOCUMENT)) {
 				category = "";
-				query = "";
-				anchorText = "";
+				querySB = new StringBuffer();
+				anchorTextSB = new StringBuffer();
+				tagSB = new StringBuffer();
 			}
 
 			if (atts.getValue(0) != null) {
 
-				// Category
-				if (qName.equals("category") && (category.equals(""))) {
-					category = categoryEncoder.encode(this
+				// Category - Take only the first category from the doc (in case
+				// that the doc has more than one category)
+				if (qName.equals(ParserConstants.CATEGORY)
+						&& ("".equals(category))) {
+					category = categoryEncoder.encode(StringUtilities
 							.removeSpecialChars(atts.getValue(0)));
 				}
 
 				// Query (search)
-				if (qName.equals("search") && (query.equals(""))) {
-					query = queryEncoder.encode(this.removeSpecialChars(atts
-							.getValue(0)));
+				if (qName.equals(ParserConstants.SEARCH)) {
+					querySB.append(" " + this.filterInfo(atts.getValue(0)));
 				}
-				
+
 				// Anchor text
-				if (qName.equals("inlink") && (anchorText.equals(""))) {
-				/*	anchorText = anchorTextEncoder.encode(this.removeSpecialChars(atts
-							.getValue(0)));*/
-					
-					String text = this.removeSpecialChars(atts
-							.getValue(0));
-					anchorText = anchorTextEncoder.encode(text);
-				}				
+				if (qName.equals(ParserConstants.INLINK)) {
+					anchorTextSB
+							.append(" " + this.filterInfo(atts.getValue(0)));
+				}
+
+				// Top tags
+				if (qName.equals(ParserConstants.TOPTAG)) {
+					tagSB.append(" " + this.filterInfo(atts.getValue(0)));
+				}
 
 			}
 		}
+	}
+
+	/**
+	 * Filter the info before adding to the arff file
+	 * 
+	 * @param info
+	 * @return filterInfo
+	 */
+	private String filterInfo(String info) {
+		info = StringUtilities.stem(info);
+		info = StringUtilities.removeStopWords(info);
+		info = StringUtilities.removeAccents(info);
+		// info = StringUtilities.removeURLs(info);
+		info = StringUtilities.removeSpecialChars(info);
+		return info;
 	}
 
 	/**
@@ -212,19 +237,47 @@ public class ArffConverter extends DefaultHandler {
 	public void endElement(String uri, String name, String qName) {
 
 		if (docsCount <= docsMax) {
-			if (name.equals("document")) {
-				docsCount++;
-				try {
-					if ((query == null) || (query.equals(""))
-							|| (query.equals(" ")))
-						query = "?";
-					if ((anchorText == null) || (anchorText.equals(""))
-							|| (anchorText.equals(" ")))
-						anchorText = "?";					
-					writer.append(query + "," + anchorText + "," + category);
-					writer.newLine();
-				} catch (IOException e) {
-					e.printStackTrace();
+			if (name.equals(ParserConstants.DOCUMENT)) {
+
+				// Add the doc only if it has query, anchor-text and tags
+				if (isCompleteDoc()) {
+					try {
+
+						docsCount++;
+
+						// Remove search duplicated terms
+						if (ConfigParser.parseAttribute(ParserConstants.SEARCH)) {
+							writer
+									.append('"' + StringUtilities
+											.removeDuplicated(querySB
+													.toString().trim()) + '"' + ',');
+						}
+
+						// Remove anchor-text duplicated terms
+						if (ConfigParser.parseAttribute(ParserConstants.INLINK)) {
+							writer.append('"' + StringUtilities
+									.removeDuplicated(anchorTextSB.toString()
+											.trim()) + '"' + ',');
+						}
+
+						// Remove tags duplicated terms
+						if (ConfigParser.parseAttribute(ParserConstants.TOPTAG)) {
+							writer
+									.append('"' + StringUtilities
+											.removeDuplicated(tagSB.toString()
+													.trim()) + '"' + ',');
+						}
+
+						writer.append(category);
+
+						writer.newLine();
+
+						if (docsCount % 1000 == 0)
+							System.out.println("Processed doc #" + docsCount);
+
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -232,23 +285,27 @@ public class ArffConverter extends DefaultHandler {
 	}
 
 	/**
-	 * Remove special chars
+	 * Returns true if the doc has query, anchor-text and tags
 	 * 
-	 * @param text
-	 * @param charsToKeep
-	 * @return
+	 * @return completeDoc
 	 */
-	public String removeSpecialChars(String text) {
-		text = text.toLowerCase();
-		String charsToKeep = "abcdefghijklmnopqrstuvwxyz";
-		StringBuffer buffer = new StringBuffer();
-		for (int i = 0; i < text.length(); i++) {
-			char ch = text.charAt(i);
-			if (charsToKeep.indexOf(ch) > -1) {
-				buffer.append(ch);
-			}
-		}
-		return buffer.toString();
+	private boolean isCompleteDoc() {
+
+		return (isCompleteInfo(this.querySB)
+				&& isCompleteInfo(this.anchorTextSB) && isCompleteInfo(this.tagSB));
+	}
+
+	/**
+	 * Returns true if the StringBuffer info is != null and != ""
+	 * 
+	 * @param info
+	 * @return completeInfo
+	 */
+	private boolean isCompleteInfo(StringBuffer info) {
+		if ((info != null) && !("".equals(info.toString().trim()))
+				&& !(" ".equals(info.toString())))
+			return true;
+		return false;
 	}
 
 	/**

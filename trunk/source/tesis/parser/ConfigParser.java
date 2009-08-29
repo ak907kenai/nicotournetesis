@@ -25,11 +25,16 @@ public class ConfigParser {
 
 	public static String csvColumns = null;
 
-	public static String arffAttributes = null;
+	public static String[] arffAttributes = null;
+	// public static String arffAttributes = null;
 
 	public static int docsMax = 0;
 
+	public static int maxCatLevels = 0;
+
 	public static int minCatCount = 0;
+
+	public static String stopWordsFile = null;
 
 	// Parse the config.xml file
 	public static void parse() {
@@ -65,11 +70,18 @@ public class ConfigParser {
 			setArffAttributes(raiz.getChild("arffattributes").getText());
 
 			// Set docsMax property
-			setDocsMax(Integer.parseInt(raiz.getChild("docsMax").getText()));
+			setDocsMax(Integer.parseInt(raiz.getChild("docsmax").getText()));
 
 			// Set minCatCount property
 			setMinCatCount(Integer.parseInt(raiz.getChild("mincatcount")
 					.getText()));
+
+			// Set maxCatLevels property
+			setMaxCatLevels(Integer.parseInt(raiz.getChild("maxcatlevels")
+					.getText()));
+
+			// Set stopWordsFile property
+			setStopWordsFile(raiz.getChild("stopwordsfile").getText());
 
 		} catch (JDOMException e) {
 			e.printStackTrace();
@@ -145,7 +157,7 @@ public class ConfigParser {
 	}
 
 	// Returns arff attributes
-	public static String getArffAttributes() {
+	public static String[] getArffAttributes() {
 		if (arffAttributes == null) {
 			parse();
 		}
@@ -154,7 +166,7 @@ public class ConfigParser {
 
 	// Set arff file
 	public static void setArffAttributes(String arffAttributes) {
-		ConfigParser.arffAttributes = arffAttributes;
+		ConfigParser.arffAttributes = arffAttributes.split(";");
 	}
 
 	// Returns the docs max
@@ -165,12 +177,10 @@ public class ConfigParser {
 		return docsMax;
 	}
 
-	// Set doc max
 	public static void setDocsMax(int docsMax) {
 		ConfigParser.docsMax = docsMax;
 	}
 
-	// Returns min cat count
 	public static int getMinCatCount() {
 		if (minCatCount == 0) {
 			parse();
@@ -178,8 +188,40 @@ public class ConfigParser {
 		return minCatCount;
 	}
 
-	// Set min cat count
 	public static void setMinCatCount(int minCatCount) {
 		ConfigParser.minCatCount = minCatCount;
 	}
+
+	public static int getMaxCatLevels() {
+		if (maxCatLevels == 0) {
+			parse();
+		}
+		return maxCatLevels;
+	}
+
+	public static void setMaxCatLevels(int maxCatLevels) {
+		ConfigParser.maxCatLevels = maxCatLevels;
+	}
+
+	public static String getStopWordsFile() {
+		if (stopWordsFile == null) {
+			parse();
+		}
+		return stopWordsFile;
+	}
+
+	public static void setStopWordsFile(String stopWordsFile) {
+		ConfigParser.stopWordsFile = stopWordsFile;
+	}
+
+	// Returns if parse the attribute passed by param
+	public static boolean parseAttribute(String attribute) {
+		String[] attrs = ConfigParser.getArffAttributes();
+		for (int i = 0; i < attrs.length; i++) {
+			if (attrs[i].startsWith(attribute))
+				return true;
+		}
+		return false;
+	}
+
 }

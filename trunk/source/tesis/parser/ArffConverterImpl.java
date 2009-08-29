@@ -1,13 +1,7 @@
 package tesis.parser;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-import org.xml.sax.SAXException;
-
+import encoder.DataEncoder;
 import encoder.FilterCategoryEncoder;
-import encoder.QueryEncoder;
 import filter.CategoryDataFilter;
 
 /**
@@ -17,25 +11,28 @@ import filter.CategoryDataFilter;
  * @author nicotourne
  * 
  */
-public class CategoryFilterArffConverter extends ArffConverter {
+public class ArffConverterImpl extends ArffConverter {
 
-	public CategoryFilterArffConverter() {
+	public ArffConverterImpl() {
 		super();
 	}
 
 	public void iniEncoders() {
 		categoryEncoder = new FilterCategoryEncoder();
-		queryEncoder = new QueryEncoder();
+		queryEncoder = new DataEncoder();
+		anchorTextEncoder = new DataEncoder();
+		tagEncoder = new DataEncoder();
 	}
-
 
 	/**
-	 * Write data in the ARFF file 
-	 *
+	 * Write data in the ARFF file
+	 * 
 	 */
 	public void writeARFFData() {
-		this.setDataFilter(new CategoryDataFilter(this.categoryEncoder.getCategories()));
+		// Filter the categories
+		this.setDataFilter(new CategoryDataFilter(this.categoryEncoder
+				.getCategories()));
 		super.writeARFFData();
 	}
-	
+
 }
