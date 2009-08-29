@@ -23,7 +23,7 @@ public class CategoryDataFilter extends DataFilter {
 		Integer catCount = categories.get(strData[strData.length - 1]);
 		if ((catCount != null)
 				&& (catCount.intValue() >= ConfigParser.getMinCatCount())) {
-			System.out.println(catCount.intValue());
+			//System.out.println(catCount.intValue());
 			return true;
 		} else
 			return false;
