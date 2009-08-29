@@ -1,22 +1,20 @@
 <?xml version="1.0"?>
 <config tipo="aaa">
 
-	<datafile2>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\datos_small.xml</datafile2>
-
+	<!-- datafile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\datos_small.xml</datafile2 -->
 	<datafile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\CABS120k08-1.0.xml</datafile>
-
 	<destfile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\dest.csv</destfile>
-	
-	<arfffile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\data25k.arff</arfffile>
-	
+	<arfffile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\datatest.arff</arfffile>
 	<arffdatafile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\onlydata.arff</arffdatafile>
 	
-	<csvcolumns>url,search/query,inlink/anchor_text,bookmark/tags,category/name</csvcolumns>
-	
-	<arffattributes>query real;class</arffattributes>
-	
-	<docsMax>130000</docsMax>
-	
+	<!-- csvcolumns>search/query,inlink/anchor_text,bookmark/tags,category/name</csvcolumns -->
+	<csvcolumns>search/query,inlink/anchor_text,category/name</csvcolumns>
+	<!-- arffattributes>search string;inlink string;top_tag string;class string</arffattributes -->
+	<arffattributes>search string;inlink string;class string</arffattributes>
+	<!-- arffattributes>top_tag string;class string</arffattributes -->
+	<maxcatlevels>3</maxcatlevels>
+	<docsmax>130000</docsmax>
 	<mincatcount>100</mincatcount>
+	<stopwordsfile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\stopwords_600.txt</stopwordsfile>
 	
 </config>
