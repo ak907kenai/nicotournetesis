@@ -1,9 +1,15 @@
 package tesis.parser;
 
+import java.util.Date;
+
+
 public class Convert2ArffMain {
 
 	public static void main(String args[]) throws Exception {
 
+		
+		long startTime = System.currentTimeMillis();
+		
 		ArffConverter handler = new ArffConverterImpl();
 
 		// Write arff data
@@ -13,6 +19,12 @@ public class Convert2ArffMain {
 		handler.writeARFFHeader();
 
 		handler.writeARFFData();
+		
+		long endTime = System.currentTimeMillis();
+		long dif = endTime - startTime;
+		
+		Date difMin = new Date(dif);
+		System.out.println("Total time: " + difMin.getMinutes() + ":" + difMin.getSeconds());
 
 		System.out.println("Finished!");
 
