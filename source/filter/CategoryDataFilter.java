@@ -18,12 +18,14 @@ public class CategoryDataFilter extends DataFilter {
 	 */
 	public boolean eval(String str) {
 		String strData[] = str.split(",");
-		// TODO Obtener el id categoria de str y fijarse en categories si esa
-		// categoria tiene mas de X instancias
+
+		// Get the cat id from str and check if the category in categories has more than X instances
 		Integer catCount = categories.get(strData[strData.length - 1]);
 		if ((catCount != null)
 				&& (catCount.intValue() >= ConfigParser.getMinCatCount())) {
-			//System.out.println(catCount.intValue());
+			
+			// TODO Chequear si cada uno de los textos de query/anchortext/tags se repite mas de N veces
+			
 			return true;
 		} else
 			return false;
