@@ -199,17 +199,20 @@ public class ArffConverter extends DefaultHandler {
 				// Query (search)
 				if (qName.equals(ParserConstants.SEARCH)) {
 					querySB.append(" " + this.filterInfo(atts.getValue(0)));
+					// TODO Agregar ese texto al hashtable searchPresences (texto+presencias)
 				}
 
 				// Anchor text
 				if (qName.equals(ParserConstants.INLINK)) {
 					anchorTextSB
 							.append(" " + this.filterInfo(atts.getValue(0)));
+					// TODO Agregar ese texto al hashtable anchortextPresences (texto+presencias)					
 				}
 
 				// Top tags
 				if (qName.equals(ParserConstants.TOPTAG)) {
 					tagSB.append(" " + this.filterInfo(atts.getValue(0)));
+					// TODO Agregar ese texto al hashtable tagsPresences (texto+presencias)					
 				}
 
 			}
@@ -223,10 +226,10 @@ public class ArffConverter extends DefaultHandler {
 	 * @return filterInfo
 	 */
 	private String filterInfo(String info) {
-		info = StringUtilities.stem(info);
+		info = StringUtilities.replaceHtmlCoding(info);
 		info = StringUtilities.removeStopWords(info);
+		info = StringUtilities.stem(info);
 		info = StringUtilities.removeAccents(info);
-		// info = StringUtilities.removeURLs(info);
 		info = StringUtilities.removeSpecialChars(info);
 		return info;
 	}
