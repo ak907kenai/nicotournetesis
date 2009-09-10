@@ -7,11 +7,14 @@
 	<arfffile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\datatest.arff</arfffile>
 	<arffdatafile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\onlydata.arff</arffdatafile>
 	
-	<!-- csvcolumns>search/query,inlink/anchor_text,bookmark/tags,category/name</csvcolumns -->
-	<csvcolumns>search/query,inlink/anchor_text,category/name</csvcolumns>
-	<!-- arffattributes>search string;inlink string;top_tag string;class string</arffattributes -->
-	<arffattributes>search string;inlink string;class string</arffattributes>
+	<csvcolumns>search/query,inlink/anchor_text,bookmark/tags,category/name</csvcolumns>
+	<!-- csvcolumns>search/query,inlink/anchor_text,category/name</csvcolumns -->
+	<!-- csvcolumns>bookmark/tags,category/name</csvcolumns -->
+	
+	<arffattributes>search string;inlink string;top_tag string;class string</arffattributes>
+	<!-- arffattributes>search string;inlink string;class string</arffattributes -->
 	<!-- arffattributes>top_tag string;class string</arffattributes -->
+	
 	<maxcatlevels>3</maxcatlevels>
 	<docsmax>130000</docsmax>
 	<mincatcount>100</mincatcount>
