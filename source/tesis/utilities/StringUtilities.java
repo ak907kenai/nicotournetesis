@@ -161,9 +161,10 @@ public class StringUtilities {
 		HashSet<String> elems = new HashSet<String>();
 		String[] textsA = texts.split(" ");
 
-		// Add the elements on a Set (no duplicated elements)
+		// Add the elements on a Set (no duplicated elements and lenght > 2)
 		for (int i = 0; i < textsA.length; i++) {
-			elems.add(textsA[i]);
+			if (textsA[i].length() > 2)
+				elems.add(textsA[i]);
 		}
 
 		// Copy no-duplicated elements on a StringBuffer
