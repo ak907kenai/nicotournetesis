@@ -1,17 +1,13 @@
 package filter;
 
-public class DataFilter {
+import encoder.TermsEncoder;
 
+public abstract class DataFilter {
+
+	
 	public DataFilter() {
 	}
 	
+	public abstract boolean eval(String str);
 	
-	/**
-	 * Returns true if the instance (str) is valid
-	 * @param str instance
-	 * @return boolean
-	 */
-	public boolean eval(String str) {
-		return true;
-	}
 }
