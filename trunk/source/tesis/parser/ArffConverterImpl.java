@@ -2,7 +2,9 @@ package tesis.parser;
 
 import encoder.DataEncoder;
 import encoder.FilterCategoryEncoder;
+import encoder.TermsEncoder;
 import filter.CategoryDataFilter;
+import filter.TermsFilter;
 
 /**
  * Filter the category that have > 5 instances. Add only the instances that
@@ -22,6 +24,7 @@ public class ArffConverterImpl extends ArffConverter {
 		queryEncoder = new DataEncoder();
 		anchorTextEncoder = new DataEncoder();
 		tagEncoder = new DataEncoder();
+		termsEncoder = new TermsEncoder();
 	}
 
 	/**
@@ -32,6 +35,7 @@ public class ArffConverterImpl extends ArffConverter {
 		// Filter the categories
 		this.setDataFilter(new CategoryDataFilter(this.categoryEncoder
 				.getCategories()));
+		this.setTermsFilter(new TermsFilter(this.termsEncoder));		
 		super.writeARFFData();
 	}
 
