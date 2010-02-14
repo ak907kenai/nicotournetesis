@@ -24,7 +24,7 @@ public class CategoryEncoder {
 
 		// Create a code for the category
 		String encoded = SimpleEncoder.encoder(catName);
-
+		
 		if (!categories.containsKey(encoded))
 			categories.put(encoded, new Integer(1));
 		else {
