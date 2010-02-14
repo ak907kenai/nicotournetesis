@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -16,8 +18,10 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import tesis.utilities.StringUtilities;
 import encoder.CategoryEncoder;
 import encoder.DataEncoder;
+import encoder.TermsEncoder;
 import filter.CategoryDataFilter;
 import filter.DataFilter;
+import filter.TermsFilter;
 
 public class ArffConverter extends DefaultHandler {
 
@@ -44,10 +48,16 @@ public class ArffConverter extends DefaultHandler {
 	protected DataEncoder tagEncoder;
 
 	protected DataFilter filter;
+	
+	protected TermsFilter termsFilter;
 
+	protected TermsEncoder termsEncoder;
+
+	
 	public ArffConverter() {
 		super();
 		filter = null;
+		termsFilter = null;
 		iniEncoders();
 	}
 
@@ -56,6 +66,7 @@ public class ArffConverter extends DefaultHandler {
 		queryEncoder = new DataEncoder();
 		anchorTextEncoder = new DataEncoder();
 		tagEncoder = new DataEncoder();
+		termsEncoder = new TermsEncoder();
 	}
 
 	/**
@@ -66,7 +77,7 @@ public class ArffConverter extends DefaultHandler {
 	public void writeARFFHeader() throws SAXException {
 		try {
 
-			// Read data from xml file
+			// Read data from xml file and save on a temp file
 			this.writeTemporalData();
 
 			// Create the arff writer
@@ -110,14 +121,14 @@ public class ArffConverter extends DefaultHandler {
 			BufferedReader in = new BufferedReader(new FileReader(ConfigParser
 					.getArffDataFile()));
 			String str;
+			
 			while ((str = in.readLine()) != null) {
-				if (filter != null) {
-					if (filter.eval(str)) {
-						writer.append(str);
-						writer.newLine();
+				if (filter.eval(str)) {
+					str = termsFilter.filter(str); 
+					writer.append(str);
+					writer.newLine();
 
-						instancesCount++;
-					}
+					instancesCount++;
 				}
 			}
 			in.close();
@@ -192,26 +203,63 @@ public class ArffConverter extends DefaultHandler {
 				// that the doc has more than one category)
 				if (qName.equals(ParserConstants.CATEGORY)
 						&& ("".equals(category))) {
+					String text = StringUtilities.removeSpecialChars(atts.getValue(0));
 					category = categoryEncoder.encode(StringUtilities
-							.removeSpecialChars(atts.getValue(0)));
+							.removeSpecialChars(text));
 				}
 
 				// Query (search)
 				if (qName.equals(ParserConstants.SEARCH)) {
-					querySB.append(" " + this.filterInfo(atts.getValue(0)));
+					String[] tokens = atts.getValue(0).split(" ");
+					for(int i = 0; i < tokens.length; i++) {
+						String text = this.filterInfo(tokens[i]);
+						/*if (text.length() >= 3) {
+							if (!"".equals(querySB.toString()))
+								querySB.append(" ");*/
+							querySB.append(" " + text);
+							termsEncoder.addTerm(text);
+						//}
+					}
+					/*String text = this.filterInfo(atts.getValue(0));
+					querySB.append(" " + text);
+					termsEncoder.addTerm(text);*/
 					// TODO Agregar ese texto al hashtable searchPresences (texto+presencias)
 				}
 
 				// Anchor text
 				if (qName.equals(ParserConstants.INLINK)) {
+					String[] tokens = atts.getValue(0).split(" ");
+					for(int i = 0; i < tokens.length; i++) {
+						String text = this.filterInfo(tokens[i]);
+						/*if (text.length() >= 3) {
+							if (!"".equals(anchorTextSB.toString()))
+								anchorTextSB.append(" ");*/
+							anchorTextSB.append(" " + text);
+							termsEncoder.addTerm(text);							
+						//}
+					}
+					/*String text = this.filterInfo(atts.getValue(0));
 					anchorTextSB
-							.append(" " + this.filterInfo(atts.getValue(0)));
+							.append(" " + text);
+					termsEncoder.addTerm(text);*/
 					// TODO Agregar ese texto al hashtable anchortextPresences (texto+presencias)					
 				}
 
 				// Top tags
 				if (qName.equals(ParserConstants.TOPTAG)) {
-					tagSB.append(" " + this.filterInfo(atts.getValue(0)));
+					String[] tokens = atts.getValue(0).split(" ");
+					for(int i = 0; i < tokens.length; i++) {
+						String text = this.filterInfo(tokens[i]);
+						/*if (text.length() >= 3) {
+							if (!"".equals(tagSB.toString()))
+								tagSB.append(" ");*/							
+							tagSB.append(" " + text);
+							termsEncoder.addTerm(text);							
+						//}
+					}
+					/*String text = this.filterInfo(atts.getValue(0));
+					tagSB.append(" " + text);
+					termsEncoder.addTerm(text);*/
 					// TODO Agregar ese texto al hashtable tagsPresences (texto+presencias)					
 				}
 
@@ -318,6 +366,26 @@ public class ArffConverter extends DefaultHandler {
 	 */
 	public void setDataFilter(CategoryDataFilter filter) {
 		this.filter = filter;
+	}
+	
+	/**
+	 * Set a Terms Filter instance
+	 * @param termsFilter
+	 */
+	public void setTermsFilter(TermsFilter termsFilter) {
+		this.termsFilter = termsFilter;
+	}
+	
+	/**
+	 * Print the collection of terms-presenceCount
+	 *
+	 */
+	public void printTerms() {
+		Enumeration k = termsEncoder.getTerms().keys();
+		while (k.hasMoreElements()) {
+			String key = (String) k.nextElement();
+			System.out.println(key + " : " + ((Integer)termsEncoder.getTerms().get(key)).intValue());
+		}
 	}
 
 }

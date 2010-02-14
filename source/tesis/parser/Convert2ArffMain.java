@@ -19,6 +19,7 @@ public class Convert2ArffMain {
 		handler.writeARFFHeader();
 
 		handler.writeARFFData();
+		handler.printTerms();
 		
 		long endTime = System.currentTimeMillis();
 		long dif = endTime - startTime;
