@@ -6,7 +6,7 @@ import tesis.parser.ConfigParser;
 
 public class CategoryDataFilter extends DataFilter {
 
-	Hashtable<String, Integer> categories;
+	private Hashtable<String, Integer> categories;
 
 	public CategoryDataFilter(Hashtable<String, Integer> categories) {
 		this.categories = categories;
