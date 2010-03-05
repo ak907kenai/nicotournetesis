@@ -1,7 +1,9 @@
 package encoder;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.List;
 
 import tesis.parser.ConfigParser;
 
@@ -13,6 +15,7 @@ public class CategoryEncoder {
 		categories = new Hashtable<String, Integer>();
 	}
 
+	
 	public String encode(String catName) {
 
 		// Remove the "top/" string from the category because all the categories
@@ -99,18 +102,44 @@ public class CategoryEncoder {
 	}
 
 	public static void main(String[] args) {
-		int maxCatLevels = 3;
 		
-		String catName = "shopping/tools/vehicle repair/ford/escord";
-		String[] cats = catName.split("/");
-		if (cats.length > maxCatLevels) {
-			StringBuffer catsSB = new StringBuffer();
-			for(int i = 0; i < maxCatLevels; i++) {
-				catsSB.append(cats[i]);
-				catsSB.append("/");
-			}
-			catName = catsSB.toString().substring(0, catsSB.length()-1);
+		List<String> cats = new ArrayList<String>();
+		cats.add("top/arts");
+		cats.add("top/business");
+		cats.add("top/computers");
+		cats.add("top/games");
+		cats.add("top/health");
+		cats.add("top/home");
+		cats.add("top/kids and teens");
+		cats.add("top/news");
+		cats.add("top/recreation");
+		cats.add("top/reference");
+		cats.add("top/regional");
+		cats.add("top/science");
+		cats.add("top/shopping");
+		cats.add("top/society");
+		cats.add("top/sports");
+		cats.add("top/world");
+		
+		//String catName = "top/world";
+		CategoryEncoder categoryEncoder = new CategoryEncoder();
+		for(String catName : cats) {
+			System.out.println(catName + "  =  " + categoryEncoder.encode(catName));
 		}
-		System.out.println(catName);
+		
+		//System.out.println(catName + "  =>  " + catCode);
+		
+		
+		for (String rCatCode : ConfigParser.getIncludeCats()) {
+			System.out.println(rCatCode);
+		}
+		
+		
+		// Returns false if the document belongs to a removed category
+		String newCatCode = "861340"; 
+		for (String removeCatCode : ConfigParser.getIncludeCats()) {
+			if (removeCatCode.trim().equals(newCatCode.trim()))
+				System.out.println("REMOVE");
+		}
 	}
 }

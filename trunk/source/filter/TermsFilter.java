@@ -1,5 +1,6 @@
 package filter;
 
+import tesis.parser.ConfigParser;
 import encoder.TermsEncoder;
 
 public class TermsFilter extends DataFilter {
@@ -19,7 +20,7 @@ public class TermsFilter extends DataFilter {
 	
 	
 	/**
-	 * Filter the terms with < 5 occurrences
+	 * Filter the terms with <= 5 occurrences
 	 * @param str
 	 * @return filter str
 	 */
@@ -43,7 +44,8 @@ public class TermsFilter extends DataFilter {
 			for(String term : termList) {
 				Integer countPresence = (Integer) this.termsEncoder.getTerms().get(term);
 				if (countPresence != null)
-					if (countPresence.intValue() > 5)	// If the term is present more < 5 times, remove it 
+					// If the term is present < ConfigParser.getMinTermsPresence() times, remove it
+					if (countPresence.intValue() >= ConfigParser.getMinTermsPresence()) 
 						dataSB.append(term + " ");
 			}
 			dataSB.append("\"");
