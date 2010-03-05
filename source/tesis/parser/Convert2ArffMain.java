@@ -19,13 +19,13 @@ public class Convert2ArffMain {
 		handler.writeARFFHeader();
 
 		handler.writeARFFData();
-		handler.printTerms();
+		//handler.printTerms();
 		
 		long endTime = System.currentTimeMillis();
 		long dif = endTime - startTime;
 		
 		Date difMin = new Date(dif);
-		System.out.println("Total time: " + difMin.getMinutes() + ":" + difMin.getSeconds());
+		System.out.println("Total time: " + difMin.getHours() + ":" + difMin.getMinutes() + ":" + difMin.getSeconds());
 
 		System.out.println("Finished!");
 

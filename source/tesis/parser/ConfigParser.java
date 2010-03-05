@@ -34,7 +34,14 @@ public class ConfigParser {
 
 	public static int minCatCount = 0;
 
+	public static int minTermsPresence = 0;
+	
 	public static String stopWordsFile = null;
+	
+	public static String[] includeCats = null;
+	
+	public static int minLengthTerm = 0;
+	
 
 	// Parse the config.xml file
 	public static void parse() {
@@ -80,8 +87,19 @@ public class ConfigParser {
 			setMaxCatLevels(Integer.parseInt(raiz.getChild("maxcatlevels")
 					.getText()));
 
+			// Set minTermsPresence property
+			setMinTermsPresence(Integer.parseInt(raiz.getChild("mintermspresence")
+					.getText()));
+			
 			// Set stopWordsFile property
 			setStopWordsFile(raiz.getChild("stopwordsfile").getText());
+			
+			// Set removeCats property
+			setIncludeCats(raiz.getChild("includecats").getText());
+			
+			// Set minLengthTerm property
+			setMinLengthTerm(Integer.parseInt(raiz.getChild("minlengthterm").getText()));
+
 
 		} catch (JDOMException e) {
 			e.printStackTrace();
@@ -91,12 +109,12 @@ public class ConfigParser {
 
 	}
 
+	
 	// Returns the data file (.xml)
 	public static String getDataFile() {
-		if (dataFile == null) {
+		if (ConfigParser.dataFile == null)
 			parse();
-		}
-		return dataFile;
+		return ConfigParser.dataFile;
 	}
 
 	// Set data file (.xml)
@@ -106,10 +124,9 @@ public class ConfigParser {
 
 	// Returns the dest file (.csv)
 	public static String getDestFile() {
-		if (destFile == null) {
+		if (ConfigParser.destFile == null)
 			parse();
-		}
-		return destFile;
+		return ConfigParser.destFile;
 	}
 
 	// Set dest file (.xml)
@@ -119,10 +136,9 @@ public class ConfigParser {
 
 	// Returns the csv columns
 	public static String getCsvColumns() {
-		if (csvColumns == null) {
+		if (ConfigParser.csvColumns == null)
 			parse();
-		}
-		return csvColumns;
+		return ConfigParser.csvColumns;
 	}
 
 	// Set the csv columns
@@ -132,10 +148,9 @@ public class ConfigParser {
 
 	// Returns arff file
 	public static String getArffFile() {
-		if (arffFile == null) {
+		if (ConfigParser.arffFile == null)
 			parse();
-		}
-		return arffFile;
+		return ConfigParser.arffFile;
 	}
 
 	// Set arff file
@@ -145,10 +160,9 @@ public class ConfigParser {
 
 	// Returns arff data file
 	public static String getArffDataFile() {
-		if (arffDataFile == null) {
+		if (ConfigParser.arffDataFile == null)
 			parse();
-		}
-		return arffDataFile;
+		return ConfigParser.arffDataFile;
 	}
 
 	// Set arff data file
@@ -158,10 +172,9 @@ public class ConfigParser {
 
 	// Returns arff attributes
 	public static String[] getArffAttributes() {
-		if (arffAttributes == null) {
+		if (ConfigParser.arffAttributes == null)
 			parse();
-		}
-		return arffAttributes;
+		return ConfigParser.arffAttributes;
 	}
 
 	// Set arff file
@@ -171,10 +184,9 @@ public class ConfigParser {
 
 	// Returns the docs max
 	public static int getDocsMax() {
-		if (docsMax == 0) {
+		if (ConfigParser.docsMax == 0)
 			parse();
-		}
-		return docsMax;
+		return ConfigParser.docsMax;
 	}
 
 	public static void setDocsMax(int docsMax) {
@@ -182,10 +194,9 @@ public class ConfigParser {
 	}
 
 	public static int getMinCatCount() {
-		if (minCatCount == 0) {
+		if (ConfigParser.minCatCount == 0)
 			parse();
-		}
-		return minCatCount;
+		return ConfigParser.minCatCount;
 	}
 
 	public static void setMinCatCount(int minCatCount) {
@@ -193,26 +204,60 @@ public class ConfigParser {
 	}
 
 	public static int getMaxCatLevels() {
-		if (maxCatLevels == 0) {
+		if (ConfigParser.maxCatLevels == 0)
 			parse();
-		}
-		return maxCatLevels;
+		return ConfigParser.maxCatLevels;
 	}
 
 	public static void setMaxCatLevels(int maxCatLevels) {
 		ConfigParser.maxCatLevels = maxCatLevels;
 	}
 
-	public static String getStopWordsFile() {
-		if (stopWordsFile == null) {
+	public static int getMinTermsPresence() {
+		if (ConfigParser.minTermsPresence == 0)
 			parse();
-		}
-		return stopWordsFile;
+		return ConfigParser.minTermsPresence;
+	}
+
+	public static void setMinTermsPresence(int minTermsPresence) {
+		ConfigParser.minTermsPresence = minTermsPresence;
+	}
+	
+	public static String getStopWordsFile() {
+		if (ConfigParser.stopWordsFile == null)
+			parse();
+		return ConfigParser.stopWordsFile;
 	}
 
 	public static void setStopWordsFile(String stopWordsFile) {
 		ConfigParser.stopWordsFile = stopWordsFile;
 	}
+	
+	// Set include cats
+	public static void setIncludeCats(String includeCats) {
+		ConfigParser.includeCats = includeCats.split(";");
+	}
+
+	// Returns include cats
+	public static String[] getIncludeCats() {
+		if (ConfigParser.includeCats == null)
+			parse();
+		return ConfigParser.includeCats;
+	}
+
+	// Set min length term
+	public static void setMinLengthTerm(int minLengthTerm) {
+		ConfigParser.minLengthTerm = minLengthTerm;
+	}
+
+	// Returns min length term
+	public static int getMinLengthTerm() {
+		if (ConfigParser.minLengthTerm == 0)
+			parse();
+		return ConfigParser.minLengthTerm;
+	}
+	
+	
 
 	// Returns if parse the attribute passed by param
 	public static boolean parseAttribute(String attribute) {

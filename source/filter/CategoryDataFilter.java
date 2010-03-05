@@ -19,7 +19,14 @@ public class CategoryDataFilter extends DataFilter {
 	public boolean eval(String str) {
 		String strData[] = str.split(",");
 
-		// Get the cat id from str and check if the category in categories has more than X instances
+		// Returns false if the document belongs to a removed category
+		/*String catCode = strData[strData.length - 1];
+		for (String removeCatCode : ConfigParser.getRemoveCats()) {
+			if (removeCatCode.trim().equals(catCode.trim()))
+				return false;
+		}*/
+
+		// Get the cat id from str and check if the category in categories has more than ConfigParser.getMinCatCount() instances
 		Integer catCount = categories.get(strData[strData.length - 1]);
 		if ((catCount != null)
 				&& (catCount.intValue() >= ConfigParser.getMinCatCount())) {
