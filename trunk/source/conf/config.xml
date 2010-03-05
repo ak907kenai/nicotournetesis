@@ -1,23 +1,37 @@
 <?xml version="1.0"?>
-<config tipo="aaa">
+<config tipo="xml">
 
 	<!-- datafile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\datos_small.xml</datafile2 -->
 	<datafile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\CABS120k08-1.0.xml</datafile>
 	<destfile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\dest.csv</destfile>
 	<arfffile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\datatest.arff</arfffile>
 	<arffdatafile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\onlydata.arff</arffdatafile>
-	
-	<csvcolumns>search/query,inlink/anchor_text,bookmark/tags,category/name</csvcolumns>
-	<!-- csvcolumns>search/query,inlink/anchor_text,category/name</csvcolumns -->
+
+
 	<!-- csvcolumns>bookmark/tags,category/name</csvcolumns -->
-	
-	<arffattributes>search string;inlink string;top_tag string;class string</arffattributes>
-	<!-- arffattributes>search string;inlink string;class string</arffattributes -->
+	<!-- csvcolumns>inlink/anchor_text,category/name</csvcolumns -->
+	<!-- csvcolumns>search/query,category/name</csvcolumns -->
+	<!-- csvcolumns>bookmark/tags,inlink/anchor_text,category/name</csvcolumns -->	
+	<!-- csvcolumns>search/query,inlink/anchor_text,category/name</csvcolumns -->
+	<csvcolumns>search/query,bookmark/tags,category/name</csvcolumns>	
+	<!-- csvcolumns>search/query,inlink/anchor_text,bookmark/tags,category/name</csvcolumns -->
+
 	<!-- arffattributes>top_tag string;class string</arffattributes -->
-	
-	<maxcatlevels>3</maxcatlevels>
+	<!-- arffattributes>inlink string;class string</arffattributes -->	
+	<!-- arffattributes>search string;class string</arffattributes -->
+	<!-- arffattributes>top_tag string;inlink string;class string</arffattributes -->
+	<!-- arffattributes>search string;inlink string;class string</arffattributes -->
+	<arffattributes>search strng;top_tag string;class string</arffattributes>	
+	<!-- arffattributes>search string;inlink string;top_tag string;class string</arffattributes -->
+
+	<maxcatlevels>1</maxcatlevels>
 	<docsmax>130000</docsmax>
 	<mincatcount>100</mincatcount>
+	<mintermspresence>15</mintermspresence>
+	<minlengthterm>3</minlengthterm>
+	<includecats>top/arts;top/business;top/computers;top/games;top/health;top/home;top/recreation;top/science;top/shopping;top/society;top/sports</includecats>	
+	<!-- removecats>top/arts;top/business;top/games;top/health;top/home;top/kids and teens;top/news;top/recreation;top/reference;top/regional;top/science;top/shopping;top/society;top/sports;top/world</removecats -->
+	<!-- removecats>top/home;top/kids and teens;top/news;top/recreation;top/reference;top/regional;top/shopping;top/society;top/world</removecats -->	
 	<stopwordsfile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\stopwords_600.txt</stopwordsfile>
 	
 </config>
