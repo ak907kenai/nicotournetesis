@@ -1,0 +1,53 @@
+[2010-03-04]
+datafile: CABS120k08-1.0.xml
+maxcatlevels: 1
+docsmax: 130000
+mincatcount: 100
+mintermspresence: 15
+minlengthterm: 3
+includecats: top/arts;top/business;top/computers;top/games;top/health;top/home;top/recreation;top/science;top/shopping;top/society;top/sports
+stopwordsfile: stopwords_600.txt
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.bayes.NaiveBayes 
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2,3-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   4093
+              [list of attributes omitted]
+Test mode:    10-fold cross-validation
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       11145               56.9116 %
+Incorrectly Classified Instances      8438               43.0884 %
+Kappa statistic                          0.5108
+Mean absolute error                      0.0813
+Root mean squared error                  0.254 
+Relative absolute error                 50.884  %
+Root relative squared error             89.8413 %
+Total Number of Instances            19583     
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.bayes.NaiveBayes 
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2,3-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   4093
+              [list of attributes omitted]
+Test mode:    split 66.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        3829               57.5098 %
+Incorrectly Classified Instances      2829               42.4902 %
+Kappa statistic                          0.5162
+Mean absolute error                      0.081 
+Root mean squared error                  0.2523
+Relative absolute error                 50.6184 %
+Root relative squared error             89.1598 %
+Total Number of Instances             6658     
