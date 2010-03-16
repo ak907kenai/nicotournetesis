@@ -1,0 +1,4 @@
+/docs						Documentos varios (papers, meetings, tracker ...)
+/docs_deliver		Documentos entregados/enviados por mail a DG
+/docs_truck			Documentos actuales, versionados
+/source					Código fuente del proyecto, dataset, resultados obtenidos
