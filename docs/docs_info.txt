@@ -1,6 +1,6 @@
 /feedback				Documentos devueltos por DG con correcciones/anotaciones
+/meetings				Audio y comentarios de las reuniones con DG
 /misc						Documentación que no concuerda con ninguna categoría
 /papers					Colección de papers sobre clasificación y temas relaciones
 /papers autor		Colección de papers escritos por Michael Noll
-/reuniones			Audio y comentarios de las reuniones con DG
 /tracker				Documentos para registrar el avance de la tesis y de interés
