@@ -1,0 +1,12 @@
+[0354-02430801123R.pdf]
+- Utilizar las principales 11 categorías de Dmoz (Arts, Business, Computers, Games, Health, Home, Recreation,
+Science, Shopping, Society and Sports) y una categoría adicional llamada "Others" fue agregada para documentos
+sin clasificar -- Se usa "Others" ya que el objetivo del paper es armar un motor de búsqueda, entonces esta
+categoría especial sirve para la presentación de resultados. No sé si conviene en mi caso.
+
+- Generar un dataset para cada tipo de categoría y poder ver estadísticas como la cantidad de attributes.
+
+- TFDR: dimensionality reduction method based on term frequencies, eliminating features representing the least 
+frequent terms, a the same time keeping the number of features at around 1000
+
+- Cross validations: 4-fold
