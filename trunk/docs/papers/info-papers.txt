@@ -1,3 +1,6 @@
+
+RelationalLearning.pdf - Tiene los pasos que utilicé para preprocesar cada dataset
+
 22-01-2010
 Daniela me envió
 [UNED, 2009] Clasificación de páginas web con anotaciones sociales.pdf
