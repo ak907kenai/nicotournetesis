@@ -20,7 +20,7 @@ public class TermsFilter extends DataFilter {
 	
 	
 	/**
-	 * Filter the terms with <= 5 occurrences
+	 * Filter the terms with <= ConfigParser.getMinTermsPresence() occurrences
 	 * @param str
 	 * @return filter str
 	 */
