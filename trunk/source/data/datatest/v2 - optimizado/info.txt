@@ -1,0 +1,4 @@
+Todos los dataset están compuestos por anchortext+tags.
+
+#1 - Baseline. El obtenido en v1
+#2 - Baseline pero sin aplicar stemming.
