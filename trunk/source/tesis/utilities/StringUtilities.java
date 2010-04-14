@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.regex.Pattern;
 
+import pt.tumba.spell.SpellChecker;
+
 import tesis.parser.ConfigParser;
 import tesis.parser.ParserConstants;
 
@@ -222,52 +224,64 @@ public class StringUtilities {
 		 * System.out.println(original);
 		 * System.out.println(StringUtilities.removeStopWords(original));
 		 */
-
-		String text1a = "http://www.algo.com";
-		System.out.println("1a)" + text1a);
-		System.out.println("1a)" + StringUtilities.removeURLs(text1a));
-
-		String text1b = "www.grandcanyonchamber.org";
-		System.out.println("1b)" + text1b);
-		System.out.println("1b)" + StringUtilities.removeURLs(text1b));
-
-		String text2 = "http://www.algo.com/carpeta";
-		System.out.println("2a)" + text2);
-		System.out.println("2a)" + StringUtilities.removeURLs(text2));
-
-		String text2b = "www.algo.com/carpeta";
-		System.out.println("2b)" + text2b);
-		System.out.println("2b)" + StringUtilities.removeURLs(text2b));
-
-		String text3 = "http://www.algo.com/subfolder1.html";
-		System.out.println("3a)" + text3);
-		System.out.println("3a)" + StringUtilities.removeURLs(text3));
-
-		String text3c = "www.algo.com/subfolder1.html";
-		System.out.println("3b)" + text3c);
-		System.out.println("3b)" + StringUtilities.removeURLs(text3c));
-
-		String text4a = "http://algo.com";
-		System.out.println("4a)" + text4a);
-		System.out.println("4a)" + StringUtilities.removeURLs(text4a));
-
-		String text4b = "algo.com";
-		System.out.println("4b)" + text4b);
-		System.out.println("4b)" + StringUtilities.removeURLs(text4b));
-
-		String text0 = "amco";
-		System.out.println("0)" + text0);
-		System.out.println("0)" + StringUtilities.removeURLs(text0));
-
-		String text5a = "http://www.grandcanyonchamber.org/";
-		System.out.println("5a)" + text5a);
-		System.out.println("5a)" + StringUtilities.removeURLs(text5a));
 		
-		System.out.println(StringUtilities.replaceHtmlCoding("Fundaci&amp;oacute;n"));
-		System.out.println(StringUtilities.replaceHtmlCoding("Investigaci&amp;oacute;n"));
-		System.out.println(StringUtilities.replaceHtmlCoding("C&amp;aacute;ncer"));
+		String[] words = new String[5];
+		words[0] = "country";
+		words[1] = "cow";
+		words[2] = "argentena";
+		words[3] = "noting";
+		words[4] = "car";
+		for(int i = 0; i < words.length; i++) {
+			System.out.println(words[i] + "   " + SpellCheck.spellCheck(words[i]));	
+		}
 		
+
+		if (false) {
+			String text1a = "http://www.algo.com";
+			System.out.println("1a)" + text1a);
+			System.out.println("1a)" + StringUtilities.removeURLs(text1a));
+	
+			String text1b = "www.grandcanyonchamber.org";
+			System.out.println("1b)" + text1b);
+			System.out.println("1b)" + StringUtilities.removeURLs(text1b));
+	
+			String text2 = "http://www.algo.com/carpeta";
+			System.out.println("2a)" + text2);
+			System.out.println("2a)" + StringUtilities.removeURLs(text2));
+	
+			String text2b = "www.algo.com/carpeta";
+			System.out.println("2b)" + text2b);
+			System.out.println("2b)" + StringUtilities.removeURLs(text2b));
+	
+			String text3 = "http://www.algo.com/subfolder1.html";
+			System.out.println("3a)" + text3);
+			System.out.println("3a)" + StringUtilities.removeURLs(text3));
+	
+			String text3c = "www.algo.com/subfolder1.html";
+			System.out.println("3b)" + text3c);
+			System.out.println("3b)" + StringUtilities.removeURLs(text3c));
+	
+			String text4a = "http://algo.com";
+			System.out.println("4a)" + text4a);
+			System.out.println("4a)" + StringUtilities.removeURLs(text4a));
+	
+			String text4b = "algo.com";
+			System.out.println("4b)" + text4b);
+			System.out.println("4b)" + StringUtilities.removeURLs(text4b));
+	
+			String text0 = "amco";
+			System.out.println("0)" + text0);
+			System.out.println("0)" + StringUtilities.removeURLs(text0));
+	
+			String text5a = "http://www.grandcanyonchamber.org/";
+			System.out.println("5a)" + text5a);
+			System.out.println("5a)" + StringUtilities.removeURLs(text5a));
+			
+			System.out.println(StringUtilities.replaceHtmlCoding("Fundaci&amp;oacute;n"));
+			System.out.println(StringUtilities.replaceHtmlCoding("Investigaci&amp;oacute;n"));
+			System.out.println(StringUtilities.replaceHtmlCoding("C&amp;aacute;ncer"));
 		
+		}
 	}
 
 	/**
