@@ -42,7 +42,17 @@ public class ConfigParser {
 	
 	public static int minLengthTerm = 0;
 	
+	public static Boolean stemming = null;
+	
+	public static String wordNetDatabaseDir = null;
 
+	public static String dataDirSpellCheck = null;
+
+	public static String misspellsSpellCheck = null;
+	
+	public static String jargonSpellCheck = null;
+	
+	
 	// Parse the config.xml file
 	public static void parse() {
 
@@ -100,7 +110,21 @@ public class ConfigParser {
 			// Set minLengthTerm property
 			setMinLengthTerm(Integer.parseInt(raiz.getChild("minlengthterm").getText()));
 
-
+			// Set minLengthTerm property
+			setStemming(Boolean.parseBoolean(raiz.getChild("stemming").getText()));
+			
+			// Set wordNetDatabaseDir property
+			setWordNetDatabaseDir(raiz.getChild("wordnetdatabasedir").getText());
+			
+			// Set data dir for Spell check
+			setDataDirSpellCheck(raiz.getChild("datadirspellcheck").getText());
+			
+			// Set misspell for Spell check
+			setMisspellsSpellCheck(raiz.getChild("datadirspellcheck").getText());
+			
+			// Set jargon for spell check
+			setJargonSpellCheck(raiz.getChild("jargonspellcheck").getText());
+			
 		} catch (JDOMException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -109,7 +133,7 @@ public class ConfigParser {
 
 	}
 
-	
+
 	// Returns the data file (.xml)
 	public static String getDataFile() {
 		if (ConfigParser.dataFile == null)
@@ -257,7 +281,66 @@ public class ConfigParser {
 		return ConfigParser.minLengthTerm;
 	}
 	
+	// Set apply stemming property
+	private static void setStemming(boolean s) {
+		ConfigParser.stemming = new Boolean(s);
+	}
 	
+	// Returns apply stemming property
+	public static boolean isStemming() {
+		if (ConfigParser.stemming == null);
+			parse();
+		return ConfigParser.stemming.booleanValue();
+	}
+
+	// Set wordnet database dir property
+	private static void setWordNetDatabaseDir(String dir) {
+		ConfigParser.wordNetDatabaseDir = dir;
+	}
+
+	// Returns wordnet database dir property
+	public static String getWordNetDatabaseDir() {
+		if (ConfigParser.wordNetDatabaseDir == null)
+			parse();
+		return ConfigParser.wordNetDatabaseDir;
+	}
+
+	// Set data dir for Spell check
+	public static void setDataDirSpellCheck(String dir) {
+		ConfigParser.dataDirSpellCheck = dir;
+	}
+
+	// Returns data dir for Spell check
+	public static String getDataDirSpellCheck() {
+		if (ConfigParser.dataDirSpellCheck == null)
+			parse();
+		return ConfigParser.dataDirSpellCheck;		
+	}
+	
+	// Set misspell for Spell check
+	public static void setMisspellsSpellCheck(String misspell) {
+		ConfigParser.misspellsSpellCheck = misspell;
+		
+	}
+
+	// Returns misspell for Spell check
+	public static String getMisspellsSpellCheck() {
+		if (ConfigParser.misspellsSpellCheck == null)
+			parse();
+		return ConfigParser.misspellsSpellCheck;		
+	}
+	
+	// Set jargon for Spell check
+	public static void setJargonSpellCheck(String jargon) {
+		ConfigParser.jargonSpellCheck = jargon;
+	}
+
+	// Returns jargon for Spell check
+	public static String getJargonSpellCheck() {
+		if (ConfigParser.jargonSpellCheck == null)
+			parse();
+		return ConfigParser.jargonSpellCheck;		
+	}
 
 	// Returns if parse the attribute passed by param
 	public static boolean parseAttribute(String attribute) {

@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
@@ -15,6 +17,9 @@ import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
 
 import tesis.utilities.StringUtilities;
+import edu.smu.tspell.wordnet.Synset;
+import edu.smu.tspell.wordnet.SynsetType;
+import edu.smu.tspell.wordnet.WordNetDatabase;
 import encoder.CategoryEncoder;
 import encoder.DataEncoder;
 import encoder.TermsEncoder;
@@ -230,42 +235,111 @@ public class ArffConverter extends DefaultHandler {
 				// Anchor text
 				if (qName.equals(ParserConstants.INLINK)) {
 					String[] tokens = atts.getValue(0).split(" ");
+					
+					// If want synonyms, uncomment next lines
 					for (int i = 0; i < tokens.length; i++) {
+					
+						// Filter each token
+						String token = this.filterInfo(tokens[i]);
+						
+						if (false && !"".equals(token)) { 
+						
+							// Get synonym list for each token
+							Set<String> tokensSyn = getSynonyms(token);
+							
+							// Process each synonym token
+							for (String tokenSyn : tokensSyn) {
+
+								// Apply filter again to each synonym
+								tokenSyn = this.filterInfo(tokenSyn);
+								
+								if (!"".equals(tokenSyn)) {
+									anchorTextSB.append(" " + tokenSyn);
+									termsEncoder.addTerm(tokenSyn);
+								}							
+							}
+						}
+					}
+
+					// If don't want get synonyms, uncomment next lines
+					/*for (int i = 0; i < tokens.length; i++) {
 						String text = this.filterInfo(tokens[i]);
 						if (!"".equals(text)) {
 							anchorTextSB.append(" " + text);
 							termsEncoder.addTerm(text);
 						}
-					}
-					/*
-					 * String text = this.filterInfo(atts.getValue(0));
-					 * anchorTextSB .append(" " + text);
-					 * termsEncoder.addTerm(text);
-					 */
-					// TODO Agregar ese texto al hashtable anchortextPresences
-					// (texto+presencias)
+					}*/
 				}
 
 				// Top tags
 				if (qName.equals(ParserConstants.TOPTAG)) {
 					String[] tokens = atts.getValue(0).split(" ");
+					
+					// If want synonyms, uncomment next lines
 					for (int i = 0; i < tokens.length; i++) {
+					
+						// Filter each token
+						String token = this.filterInfo(tokens[i]);
+						
+						if (false && !"".equals(token)) { 
+						
+							// Get synonym list for each token
+							Set<String> tokensSyn = getSynonyms(token);
+							
+							// Process each synonym token
+							for (String tokenSyn : tokensSyn) {
+
+								// Apply filter again to each synonym
+								tokenSyn = this.filterInfo(tokenSyn);
+								
+								if (!"".equals(tokenSyn)) {
+									tagSB.append(" " + tokenSyn);
+									termsEncoder.addTerm(tokenSyn);
+								}							
+							}
+						}
+					}
+					
+					// If don't want get synonyms, uncomment next lines					
+					/*for (int i = 0; i < tokens.length; i++) {
 						String text = this.filterInfo(tokens[i]);
 						if (!"".equals(text)) {
 							tagSB.append(" " + text);
 							termsEncoder.addTerm(text);
 						}
-					}
-					/*
-					 * String text = this.filterInfo(atts.getValue(0));
-					 * tagSB.append(" " + text); termsEncoder.addTerm(text);
-					 */
-					// TODO Agregar ese texto al hashtable tagsPresences
-					// (texto+presencias)
+					}*/
 				}
 
 			}
 		}
+	}
+
+	/**
+	 * Returns a list of synonyms for each term
+	 * @param String term
+	 * @return Set<String> collection of synonyms for the param term (included the original term)
+	 */
+	private Set<String> getSynonyms(String term) {
+
+		// List to return the list of synonyms
+		Set<String> termSyns = new HashSet<String>();
+		termSyns.add(term);
+		
+		// Get the synsets containing the term
+		WordNetDatabase database = WordNetDatabase.getFileInstance();
+		Synset[] synsets = database.getSynsets(term, SynsetType.NOUN);
+
+		// Display the word forms and definitions for synsets retrieved
+		if (synsets.length > 0) {
+			for (int i = 0; i < synsets.length; i++) {
+				String[] wordForms = synsets[i].getWordForms();
+				for (int j = 0; j < wordForms.length; j++) {
+					termSyns.add(wordForms[j]);
+				}
+			}
+		}
+		
+		return termSyns;
 	}
 
 	/**
@@ -294,8 +368,14 @@ public class ArffConverter extends DefaultHandler {
 		info = StringUtilities.replaceHtmlCoding(info);
 		info = StringUtilities.removeAccents(info);
 		info = StringUtilities.removeSpecialChars(info);
+		
+		// TODO try applying and not applying stems
 		info = StringUtilities.stem(info);
 		info = StringUtilities.removeStopWords(info);
+
+		// TODO try applying and not applying spellcheck
+		info = StringUtilities.spellCheck(info);
+		
 		info = (info.length() >= ConfigParser.getMinLengthTerm()) ? info : "";  
 		
 		return info;
