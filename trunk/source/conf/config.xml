@@ -8,18 +8,18 @@
 	<arffdatafile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\onlydata.arff</arffdatafile>
 
 
-	<csvcolumns>bookmark/tags,category/name</csvcolumns>
+	<!-- csvcolumns>bookmark/tags,category/name</csvcolumns -->
 	<!-- csvcolumns>inlink/anchor_text,category/name</csvcolumns -->
 	<!-- csvcolumns>search/query,category/name</csvcolumns -->
-	<!-- csvcolumns>bookmark/tags,inlink/anchor_text,category/name</csvcolumns -->	
+	<csvcolumns>bookmark/tags,inlink/anchor_text,category/name</csvcolumns>	
 	<!-- csvcolumns>search/query,inlink/anchor_text,category/name</csvcolumns -->
 	<!-- csvcolumns>search/query,bookmark/tags,category/name</csvcolumns -->	
 	<!-- csvcolumns>search/query,inlink/anchor_text,bookmark/tags,category/name</csvcolumns -->
 
-	<arffattributes>top_tag string;class string</arffattributes>
+	<!-- arffattributes>top_tag string;class string</arffattributes -->
 	<!-- arffattributes>inlink string;class string</arffattributes -->	
 	<!-- arffattributes>search string;class string</arffattributes -->
-	<!-- arffattributes>top_tag string;inlink string;class string</arffattributes -->
+	<arffattributes>top_tag string;inlink string;class string</arffattributes>
 	<!-- arffattributes>search string;inlink string;class string</arffattributes -->
 	<!-- arffattributes>search string;top_tag string;class string</arffattributes -->	
 	<!-- arffattributes>search string;inlink string;top_tag string;class string</arffattributes -->
@@ -33,5 +33,11 @@
 	<!-- removecats>top/arts;top/business;top/games;top/health;top/home;top/kids and teens;top/news;top/recreation;top/reference;top/regional;top/science;top/shopping;top/society;top/sports;top/world</removecats -->
 	<!-- removecats>top/home;top/kids and teens;top/news;top/recreation;top/reference;top/regional;top/shopping;top/society;top/world</removecats -->	
 	<stopwordsfile>D:\\Facultad\\Tesis\\nicotournetesis_svn\\source\\data\\stopwords_600.txt</stopwordsfile>
+	<stemming>false</stemming>
+	<wordnetdatabasedir>C:\\Archivos de programa\\WordNet\\2.1\\dict\\</wordnetdatabasedir>
+	
+	<datadirspellcheck>.\\dict\\english.txt</datadirspellcheck>
+	<misspellsspellcheck>.\\dict\\common-misspells.txt</misspellsspellcheck>	
+	<jargonspellcheck>.\\dict\\jargon.txt</jargonspellcheck>		
 	
 </config>
