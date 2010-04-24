@@ -7,6 +7,7 @@ public class Convert2ArffMain {
 
 	public static void main(String args[]) throws Exception {
 
+		System.setProperty("wordnet.database.dir", ConfigParser.getWordNetDatabaseDir());
 		
 		long startTime = System.currentTimeMillis();
 		
