@@ -82,6 +82,28 @@ public class StringUtilities {
 		return textsSB.toString().trim();
 	}
 
+	
+	/**
+	 * Apply spell check to each word from texts param
+	 * @param texts
+	 * @return spell check texts
+	 */
+	public static String spellCheck(String texts) {
+		
+		if ("".equals(texts.trim()))
+			return texts;
+		
+		StringBuffer textsSB = new StringBuffer();
+		
+		String[] textsA = texts.split(" ");
+		for (int i = 0; i < textsA.length; i++) {
+			textsSB.append(SpellCheck.spellCheck(textsA[i]));
+			textsSB.append(" ");
+		}
+		
+		return textsSB.toString().trim();
+	}
+	
 	/**
 	 * Remove the stopwords from the text
 	 * 
