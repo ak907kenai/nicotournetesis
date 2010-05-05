@@ -282,6 +282,230 @@ Total Number of Instances             1958
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.bayes.NaiveBayes 
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   5104
+              [list of attributes omitted]
+Test mode:    2-fold cross-validation
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       11054               56.4469 %
+Incorrectly Classified Instances      8529               43.5531 %
+Kappa statistic                          0.4943
+Mean absolute error                      0.0817
+Root mean squared error                  0.2546
+Relative absolute error                 51.1225 %
+Root relative squared error             90.0667 %
+Total Number of Instances            19583    
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.bayes.NaiveBayes 
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   5104
+              [list of attributes omitted]
+Test mode:    3-fold cross-validation
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       11439               58.4129 %
+Incorrectly Classified Instances      8144               41.5871 %
+Kappa statistic                          0.5191
+Mean absolute error                      0.0782
+Root mean squared error                  0.2474
+Relative absolute error                 48.9434 %
+Root relative squared error             87.509  %
+Total Number of Instances            19583     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.bayes.NaiveBayes 
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   5104
+              [list of attributes omitted]
+Test mode:    4-fold cross-validation
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       11632               59.3985 %
+Incorrectly Classified Instances      7951               40.6015 %
+Kappa statistic                          0.5312
+Mean absolute error                      0.0768
+Root mean squared error                  0.2444
+Relative absolute error                 48.0432 %
+Root relative squared error             86.4333 %
+Total Number of Instances            19583     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.bayes.NaiveBayes 
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   5104
+              [list of attributes omitted]
+Test mode:    5-fold cross-validation
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       11665               59.567  %
+Incorrectly Classified Instances      7918               40.433  %
+Kappa statistic                          0.5334
+Mean absolute error                      0.0762
+Root mean squared error                  0.2431
+Relative absolute error                 47.6763 %
+Root relative squared error             86.0012 %
+Total Number of Instances            19583     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.bayes.NaiveBayes 
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   5104
+              [list of attributes omitted]
+Test mode:    6-fold cross-validation
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       11743               59.9653 %
+Incorrectly Classified Instances      7840               40.0347 %
+Kappa statistic                          0.5383
+Mean absolute error                      0.0758
+Root mean squared error                  0.2422
+Relative absolute error                 47.4286 %
+Root relative squared error             85.6725 %
+Total Number of Instances            19583     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.bayes.NaiveBayes 
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   5104
+              [list of attributes omitted]
+Test mode:    7-fold cross-validation
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       11772               60.1134 %
+Incorrectly Classified Instances      7811               39.8866 %
+Kappa statistic                          0.5401
+Mean absolute error                      0.0755
+Root mean squared error                  0.2416
+Relative absolute error                 47.2094 %
+Root relative squared error             85.4572 %
+Total Number of Instances            19583     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.bayes.NaiveBayes 
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   5104
+              [list of attributes omitted]
+Test mode:    8-fold cross-validation
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       11803               60.2717 %
+Incorrectly Classified Instances      7780               39.7283 %
+Kappa statistic                          0.5421
+Mean absolute error                      0.0753
+Root mean squared error                  0.2412
+Relative absolute error                 47.098  %
+Root relative squared error             85.3064 %
+Total Number of Instances            19583     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.bayes.NaiveBayes 
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   5104
+              [list of attributes omitted]
+Test mode:    9-fold cross-validation
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       11826               60.3891 %
+Incorrectly Classified Instances      7757               39.6109 %
+Kappa statistic                          0.5435
+Mean absolute error                      0.0752
+Root mean squared error                  0.2409
+Relative absolute error                 47.0329 %
+Root relative squared error             85.2103 %
+Total Number of Instances            19583     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.bayes.NaiveBayes 
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   5104
+              [list of attributes omitted]
+Test mode:    10-fold cross-validation
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances       11824               60.3789 %
+Incorrectly Classified Instances      7759               39.6211 %
+Kappa statistic                          0.5434
+Mean absolute error                      0.0751
+Root mean squared error                  0.2409
+Relative absolute error                 47.0038 %
+Root relative squared error             85.1918 %
+Total Number of Instances            19583     
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
