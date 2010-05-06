@@ -4,4 +4,4 @@ Todos los dataset están compuestos por anchortext+tags.
 #2 - Baseline pero sin aplicar stemming.
 #3 - Baseline pero aplicando sinónimos (WordNet) => 52,09%
 #4 - Baseline pero aplicando sinónimos y stringFilter a cada sinónimo (WordNet) => 51,00%
-#5 - Baseline pero aplicando sinónimos => 64,84%
+#5 - Baseline pero aplicando spellcheck => 64,84%
