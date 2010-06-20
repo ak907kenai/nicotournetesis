@@ -1,0 +1,4 @@
+
+Tomar ideas de [UNED, 2009] Clasificación de páginas web con anotaciones sociales.pdf
+- Explicar qué categorías se eliminaron del procesamiento y por qué. También la razón de la utilización del 1er nivel de categorías.
+- Listar las categorías que se consideran, junto con la cantidad de 

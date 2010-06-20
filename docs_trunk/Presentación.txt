@@ -1,0 +1,5 @@
+Papers de donde sacar info/ideas para la presentación:
+
+
+- michael-noll_the-metadata-triumvirate_presentation-wi_2008.pdf
+  Está bueno cómo explica la definición de tags, anchor-text y search queries
