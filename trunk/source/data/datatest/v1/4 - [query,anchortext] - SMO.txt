@@ -1,0 +1,37 @@
+[2010-03-05]
+datafile: CABS120k08-1.0.xml
+maxcatlevels: 1
+docsmax: 130000
+mincatcount: 100
+mintermspresence: 15
+minlengthterm: 3
+includecats: top/arts;top/business;top/computers;top/games;top/health;top/home;top/recreation;top/science;top/shopping;top/society;top/sports
+stopwordsfile: stopwords_600.txt
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   3928
+              [list of attributes omitted]
+Test mode:    split 66.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        3448               51.7873 %
+Incorrectly Classified Instances      3210               48.2127 %
+Kappa statistic                          0.4492
+Mean absolute error                      0.1534
+Root mean squared error                  0.2717
+Relative absolute error                 95.9102 %
+Root relative squared error             96.0075 %
+Total Number of Instances             6658  
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

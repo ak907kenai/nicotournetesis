@@ -1,0 +1,112 @@
+[2010-07-22]
+datafile: CABS120k08-1.0.xml
+maxcatlevels: 1
+docsmax: 130000
+mincatcount: 100
+mintermspresence: 15
+minlengthterm: 3
+includecats: top/arts;top/business;top/computers;top/games;top/health;top/home;top/recreation;top/science;top/shopping;top/society;top/sports
+stopwordsfile: stopwords_600.txt
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   4188
+              [list of attributes omitted]
+Test mode:    10-fold cross-validation
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances        8999               45.9531 %
+Incorrectly Classified Instances     10584               54.0469 %
+Kappa statistic                          0.3793
+Mean absolute error                      0.1543
+Root mean squared error                  0.2735
+Relative absolute error                 96.5348 %
+Root relative squared error             96.7231 %
+Total Number of Instances            19583
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   4188
+              [list of attributes omitted]
+Test mode:    split 66.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        2961               44.4728 %
+Incorrectly Classified Instances      3697               55.5272 %
+Kappa statistic                          0.363 
+Mean absolute error                      0.1546
+Root mean squared error                  0.274 
+Relative absolute error                 96.6637 %
+Root relative squared error             96.829  %
+Total Number of Instances             6658     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   4188
+              [list of attributes omitted]
+Test mode:    split 5.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        5534               29.7463 %
+Incorrectly Classified Instances     13070               70.2537 %
+Kappa statistic                          0.1913
+Mean absolute error                      0.1572
+Root mean squared error                  0.279 
+Relative absolute error                 98.129  %
+Root relative squared error             98.6682 %
+Total Number of Instances            18604     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   4188
+              [list of attributes omitted]
+Test mode:    split 15.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        6101               36.6514 %
+Incorrectly Classified Instances     10545               63.3486 %
+Kappa statistic                          0.2725
+Mean absolute error                      0.1558
+Root mean squared error                  0.2764
+Relative absolute error                 97.4044 %
+Root relative squared error             97.7618 %
+Total Number of Instances            16646     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
