@@ -260,3 +260,53 @@ Total Number of Instances             3917
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   4188
+              [list of attributes omitted]
+Test mode:    split 85.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        1376               46.8505 %
+Incorrectly Classified Instances      1561               53.1495 %
+Kappa statistic                          0.3901
+Mean absolute error                      0.1543
+Root mean squared error                  0.2733
+Relative absolute error                 96.4174 %
+Root relative squared error             96.5961 %
+Total Number of Instances             2937     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   4188
+              [list of attributes omitted]
+Test mode:    split 90.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances         901               46.0163 %
+Incorrectly Classified Instances      1057               53.9837 %
+Kappa statistic                          0.379 
+Mean absolute error                      0.1542
+Root mean squared error                  0.2733
+Relative absolute error                 96.42   %
+Root relative squared error             96.6024 %
+Total Number of Instances             1958     
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
