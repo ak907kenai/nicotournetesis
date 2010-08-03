@@ -135,3 +135,153 @@ Total Number of Instances            11750
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   3990
+              [list of attributes omitted]
+Test mode:    split 50.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        5848               59.7283 %
+Incorrectly Classified Instances      3943               40.2717 %
+Kappa statistic                          0.5406
+Mean absolute error                      0.1522
+Root mean squared error                  0.2696
+Relative absolute error                 95.2233 %
+Root relative squared error             95.3488 %
+Total Number of Instances             9791     
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   3990
+              [list of attributes omitted]
+Test mode:    split 65.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        4152               60.5778 %
+Incorrectly Classified Instances      2702               39.4222 %
+Kappa statistic                          0.551 
+Mean absolute error                      0.1522
+Root mean squared error                  0.2695
+Relative absolute error                 95.1321 %
+Root relative squared error             95.2226 %
+Total Number of Instances             6854     
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   3990
+              [list of attributes omitted]
+Test mode:    split 75.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        3006               61.3971 %
+Incorrectly Classified Instances      1890               38.6029 %
+Kappa statistic                          0.5597
+Mean absolute error                      0.1521
+Root mean squared error                  0.2693
+Relative absolute error                 95.0978 %
+Root relative squared error             95.2134 %
+Total Number of Instances             4896     
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   3990
+              [list of attributes omitted]
+Test mode:    split 80.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        2428               61.9862 %
+Incorrectly Classified Instances      1489               38.0138 %
+Kappa statistic                          0.5668
+Mean absolute error                      0.1521
+Root mean squared error                  0.2692
+Relative absolute error                 95.0782 %
+Root relative squared error             95.1896 %
+Total Number of Instances             3917     
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   3990
+              [list of attributes omitted]
+Test mode:    split 85.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        1817               61.8658 %
+Incorrectly Classified Instances      1120               38.1342 %
+Kappa statistic                          0.5657
+Mean absolute error                      0.1521
+Root mean squared error                  0.2693
+Relative absolute error                 95.0497 %
+Root relative squared error             95.158  %
+Total Number of Instances             2937     
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   3990
+              [list of attributes omitted]
+Test mode:    split 90.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        1213               61.951  %
+Incorrectly Classified Instances       745               38.049  %
+Kappa statistic                          0.566 
+Mean absolute error                      0.1521
+Root mean squared error                  0.2693
+Relative absolute error                 95.0679 %
+Root relative squared error             95.1813 %
+Total Number of Instances             1958     
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
