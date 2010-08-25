@@ -1,0 +1,13 @@
+Papers de donde sacar info/ideas para la presentación:
+
+
+- michael-noll_the-metadata-triumvirate_presentation-wi_2008.pdf
+  Está bueno cómo explica la definición de tags, anchor-text y search queries
+  
+  
+- Improving Classification of Multi-Lingual Web.pdf  
+	Over the last years, we have observed an explosive growth in the information
+	available on the Web. To meet our information needs, we need more intelligent
+	systems to gather the useful information from the huge amount of Web related
+	data sources... (y el párrafo siguiente)
+	Está bueno para el inicio de la presentación
