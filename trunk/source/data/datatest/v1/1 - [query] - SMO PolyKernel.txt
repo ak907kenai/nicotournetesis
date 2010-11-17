@@ -58,6 +58,21 @@ Relative absolute error                 96.6637 %
 Root relative squared error             96.829  %
 Total Number of Instances             6658     
 
+=== Detailed Accuracy By Class ===
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.513     0.023      0.551     0.513     0.531      0.879    621000
+                 0.644     0.217      0.363     0.644     0.465      0.777    400000
+                 0.395     0.04       0.48      0.395     0.433      0.805    1051780
+                 0.418     0.107      0.411     0.418     0.414      0.738    805301
+                 0.189     0.026      0.3       0.189     0.232      0.699    703200
+                 0.466     0.089      0.509     0.466     0.486      0.798    800520
+                 0.486     0.016      0.573     0.486     0.526      0.867    600020
+                 0.398     0.054      0.518     0.398     0.45       0.764    704310
+                 0.388     0.046      0.489     0.388     0.433      0.799    906014
+                 0.26      0.015      0.353     0.26      0.299      0.787    403010
+                 0.399     0.007      0.602     0.399     0.48       0.798    513000
+Weighted Avg.    0.445     0.085      0.458     0.445     0.442      0.783
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -310,3 +325,42 @@ Total Number of Instances             1958
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   4188
+              [list of attributes omitted]
+Test mode:    10-fold cross-validation
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances        8999               45.9531 %
+Incorrectly Classified Instances     10584               54.0469 %
+Kappa statistic                          0.3793
+Mean absolute error                      0.1543
+Root mean squared error                  0.2735
+Relative absolute error                 96.5348 %
+Root relative squared error             96.7231 %
+Total Number of Instances            19583     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.545     0.022      0.584     0.545     0.564      0.893    621000
+                 0.671     0.214      0.378     0.671     0.484      0.791    400000
+                 0.393     0.039      0.474     0.393     0.43       0.795    1051780
+                 0.432     0.116      0.398     0.432     0.414      0.743    805301
+                 0.212     0.025      0.323     0.212     0.256      0.704    703200
+                 0.47      0.079      0.546     0.47      0.505      0.806    800520
+                 0.492     0.013      0.627     0.492     0.551      0.882    600020
+                 0.415     0.053      0.543     0.415     0.47       0.78     704310
+                 0.379     0.04       0.52      0.379     0.438      0.803    906014
+                 0.277     0.015      0.347     0.277     0.308      0.796    403010
+                 0.451     0.009      0.575     0.451     0.505      0.846    513000
+Weighted Avg.    0.46      0.083      0.477     0.46      0.457      0.793
+
