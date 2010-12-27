@@ -1,0 +1,8 @@
+[2010-02-21]
+datafile: CABS120k08-1.0.xml
+maxcatlevels: 2
+docsmax: 130000
+mincatcount: 100
+mintermspresence: 10
+removecats: top/home;top/kids and teens;top/news;top/recreation;top/reference;top/regional;top/shopping;top/society;top/world
+stopwordsfile: stopwords_600.txt

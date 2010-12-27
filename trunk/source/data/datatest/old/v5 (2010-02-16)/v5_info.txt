@@ -1,0 +1,8 @@
+[2010-02-16]
+datafile: CABS120k08-1.0.xml
+maxcatlevels: 1
+docsmax: 130000
+mincatcount: 100
+mintermspresence: 10
+removecats: top/world;top/regional
+stopwordsfile: stopwords_600.txt
