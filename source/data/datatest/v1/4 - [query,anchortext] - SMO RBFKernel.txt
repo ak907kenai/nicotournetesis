@@ -1,0 +1,51 @@
+[2011-01-11]
+datafile: CABS120k08-1.0.xml
+maxcatlevels: 1
+docsmax: 130000
+mincatcount: 100
+mintermspresence: 15
+minlengthterm: 3
+includecats: top/arts;top/business;top/computers;top/games;top/health;top/home;top/recreation;top/science;top/shopping;top/society;top/sports
+stopwordsfile: stopwords_600.txt
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMO -C 1.0 -L 0.0010 -P 1.0E-12 -N 0 -V -1 -W 1 -K "weka.classifiers.functions.supportVector.RBFKernel -C 250007 -G 0.01"
+Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
+Instances:    19583
+Attributes:   3928
+              [list of attributes omitted]
+Test mode:    split 66.0% train, remainder test
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances        3214               48.2728 %
+Incorrectly Classified Instances      3444               51.7272 %
+Kappa statistic                          0.3968
+Mean absolute error                      0.1543
+Root mean squared error                  0.2738
+Relative absolute error                 96.5035 %
+Root relative squared error             96.7702 %
+Total Number of Instances             6658     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.406     0.006      0.775     0.406     0.533      0.876    621000
+                 0.648     0.119      0.511     0.648     0.572      0.832    400000
+                 0.24      0.011      0.673     0.24      0.354      0.802    1051780
+                 0.479     0.096      0.471     0.479     0.475      0.787    805301
+                 0.126     0.003      0.687     0.126     0.213      0.772    703200
+                 0.808     0.257      0.382     0.808     0.519      0.807    800520
+                 0.231     0.002      0.848     0.231     0.363      0.864    600020
+                 0.496     0.078      0.483     0.496     0.49       0.804    704310
+                 0.381     0.026      0.625     0.381     0.473      0.833    906014
+                 0.059     0          0.8       0.059     0.11       0.748    403010
+                 0.371     0.008      0.545     0.371     0.441      0.845    513000
+Weighted Avg.    0.483     0.091      0.553     0.483     0.461      0.813
+
