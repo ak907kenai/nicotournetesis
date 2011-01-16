@@ -30,6 +30,21 @@ Relative absolute error                 47.0038 %
 Root relative squared error             85.1918 %
 Total Number of Instances            19583     
 
+=== Detailed Accuracy By Class ===
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.631     0.013      0.725     0.631     0.675      0.962    621000
+                 0.618     0.036      0.768     0.618     0.685      0.925    400000
+                 0.549     0.03       0.62      0.549     0.582      0.905    1051780
+                 0.452     0.053      0.602     0.452     0.516      0.829    805301
+                 0.429     0.017      0.585     0.429     0.495      0.899    703200
+                 0.861     0.233      0.428     0.861     0.572      0.898    800520
+                 0.581     0.006      0.824     0.581     0.682      0.973    600020
+                 0.63      0.038      0.712     0.63      0.668      0.911    704310
+                 0.629     0.027      0.723     0.629     0.672      0.941    906014
+                 0.189     0.006      0.488     0.189     0.273      0.881    403010
+                 0.445     0.002      0.877     0.445     0.591      0.973    513000
+Weighted Avg.    0.604     0.066      0.647     0.604     0.604      0.907
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -555,45 +570,6 @@ Relative absolute error                 47.0329 %
 Root relative squared error             85.2103 %
 Total Number of Instances            19583     
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-=== Run information ===
-
-Scheme:       weka.classifiers.bayes.NaiveBayes 
-Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
-Instances:    19583
-Attributes:   5104
-              [list of attributes omitted]
-Test mode:    10-fold cross-validation
-
-=== Stratified cross-validation ===
-=== Summary ===
-
-Correctly Classified Instances       11824               60.3789 %
-Incorrectly Classified Instances      7759               39.6211 %
-Kappa statistic                          0.5434
-Mean absolute error                      0.0751
-Root mean squared error                  0.2409
-Relative absolute error                 47.0038 %
-Root relative squared error             85.1918 %
-Total Number of Instances            19583     
-
-=== Detailed Accuracy By Class ===
-               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
-                 0.631     0.013      0.725     0.631     0.675      0.962    621000
-                 0.618     0.036      0.768     0.618     0.685      0.925    400000
-                 0.549     0.03       0.62      0.549     0.582      0.905    1051780
-                 0.452     0.053      0.602     0.452     0.516      0.829    805301
-                 0.429     0.017      0.585     0.429     0.495      0.899    703200
-                 0.861     0.233      0.428     0.861     0.572      0.898    800520
-                 0.581     0.006      0.824     0.581     0.682      0.973    600020
-                 0.63      0.038      0.712     0.63      0.668      0.911    704310
-                 0.629     0.027      0.723     0.629     0.672      0.941    906014
-                 0.189     0.006      0.488     0.189     0.273      0.881    403010
-                 0.445     0.002      0.877     0.445     0.591      0.973    513000
-Weighted Avg.    0.604     0.066      0.647     0.604     0.604      0.907
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
