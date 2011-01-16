@@ -239,6 +239,22 @@ Root relative squared error             89.8413 %
 Total Number of Instances            19583     
 
 
+=== Detailed Accuracy By Class ===
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.423     0.009      0.73      0.423     0.536      0.959    621000
+                 0.684     0.06       0.688     0.684     0.686      0.892    400000
+                 0.492     0.03       0.592     0.492     0.537      0.858    1051780
+                 0.578     0.13       0.441     0.578     0.501      0.793    805301
+                 0.35      0.017      0.531     0.35      0.422      0.867    703200
+                 0.656     0.072      0.648     0.656     0.652      0.861    800520
+                 0.858     0.067      0.371     0.858     0.518      0.947    600020
+                 0.455     0.028      0.707     0.455     0.554      0.88     704310
+                 0.55      0.024      0.723     0.55      0.625      0.915    906014
+                 0.243     0.043      0.137     0.243     0.175      0.807    403010
+                 0.729     0.006      0.775     0.729     0.751      0.968    513000
+Weighted Avg.    0.569     0.056      0.609     0.569     0.575      0.874
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -556,45 +572,6 @@ Relative absolute error                 50.7396 %
 Root relative squared error             89.6334 %
 Total Number of Instances            19583     
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-=== Run information ===
-
-Scheme:       weka.classifiers.bayes.NaiveBayes 
-Relation:     docs-weka.filters.unsupervised.attribute.StringToNominal-Rlast-weka.filters.unsupervised.attribute.StringToWordVector-R1,2,3-W1000-prune-rate-1.0-N0-stemmerweka.core.stemmers.NullStemmer-M1-tokenizerweka.core.tokenizers.WordTokenizer -delimiters " \r\n\t.,;:\'\"()?!"-weka.filters.unsupervised.attribute.Copy-R1-weka.filters.unsupervised.attribute.Remove-R1-weka.filters.unsupervised.attribute.NumericToBinary-unset-class-temporarily
-Instances:    19583
-Attributes:   4093
-              [list of attributes omitted]
-Test mode:    10-fold cross-validation
-
-=== Stratified cross-validation ===
-=== Summary ===
-
-Correctly Classified Instances       11145               56.9116 %
-Incorrectly Classified Instances      8438               43.0884 %
-Kappa statistic                          0.5108
-Mean absolute error                      0.0813
-Root mean squared error                  0.254 
-Relative absolute error                 50.884  %
-Root relative squared error             89.8413 %
-Total Number of Instances            19583     
-
-=== Detailed Accuracy By Class ===
-               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
-                 0.423     0.009      0.73      0.423     0.536      0.959    621000
-                 0.684     0.06       0.688     0.684     0.686      0.892    400000
-                 0.492     0.03       0.592     0.492     0.537      0.858    1051780
-                 0.578     0.13       0.441     0.578     0.501      0.793    805301
-                 0.35      0.017      0.531     0.35      0.422      0.867    703200
-                 0.656     0.072      0.648     0.656     0.652      0.861    800520
-                 0.858     0.067      0.371     0.858     0.518      0.947    600020
-                 0.455     0.028      0.707     0.455     0.554      0.88     704310
-                 0.55      0.024      0.723     0.55      0.625      0.915    906014
-                 0.243     0.043      0.137     0.243     0.175      0.807    403010
-                 0.729     0.006      0.775     0.729     0.751      0.968    513000
-Weighted Avg.    0.569     0.056      0.609     0.569     0.575      0.874
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
