@@ -1,1 +1,0 @@
-Pregunta – La información que tengo es sólo la que se puede ver en 3.2.7. ¿Analizar esta info también? No puedo obtener precision, recall, etc… ya que pare eso necesito configurar el Text Output de Weka y es donde tengo problemas OutOfMemory, para cualquier dataset
