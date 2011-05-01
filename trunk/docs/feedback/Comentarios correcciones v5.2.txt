@@ -1,0 +1,22 @@
+Comentarios corrección v1.11
+
+Figura 5.2
+Una pregunta, podés encontrar los términos en el diccionario después de hacer stemming? El stemming no iria después? Lo m ismo con los acentos? Esos pasos no van después de buscar los sinonimos?
+
+Por un lado, WordNet no distingue si las palabras tienen acento o no, los resultados que retorna son los mismos.
+Mientras que por el otro, WordNet funciona correctamente con los términos a los que se les haya aplicado stemming. Lo testeé con un grupo de términos de tomé de muestreo y generó correctamente los sinónimos.
+
+------------------------------------------------------------------
+
+Figura 5.3
+Otra vez no entiendo, porque volvés al codigo HTML? Y a aplicar los pasos que ya aplicaste antes? No sería generar sinonimos y después el procesamiento?
+
+Tenés razón, en la segunda parte del procesamiento (luego de generar los sinónimos) NO es necesario reemplazar el código HTML ya que es imposible que encuentre. De todas maneras, no influiría en la generación final del dataset (más allá de demorarse más tiempo en su procesamiento).
+De todas maneras, voy a quitar "Reemplazar código HTML", generar nuevamente el dataset y volver a correr el clasificador SMO.
+
+------------------------------------------------------------------
+
+Figura 5.4
+Otra vez, como funciona el spell-checking después del stemming por ejemplo? No sería anterior?
+
+En este caso, todos los términos con errores ortográficos son llevados a su forma básica (stemming). Luego, cualquiera de los 3 spell-checkers utilizados chequea si la palabra es correcta o no sin importar si la palabra se encuentra 
