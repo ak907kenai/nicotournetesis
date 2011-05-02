@@ -1,22 +1,33 @@
 Comentarios corrección v1.11
 
 Figura 5.2
-Una pregunta, podés encontrar los términos en el diccionario después de hacer stemming? El stemming no iria después? Lo m ismo con los acentos? Esos pasos no van después de buscar los sinonimos?
+Una pregunta, podés encontrar los términos en el diccionario después de hacer stemming? El stemming no iria después? Lo mismo con los acentos? Esos pasos no van después de buscar los sinonimos?
 
-Por un lado, WordNet no distingue si las palabras tienen acento o no, los resultados que retorna son los mismos.
-Mientras que por el otro, WordNet funciona correctamente con los términos a los que se les haya aplicado stemming. Lo testeé con un grupo de términos de tomé de muestreo y generó correctamente los sinónimos.
+1) WordNet funciona correctamente con los términos a los que se les haya aplicado stemming. Lo testeé con un grupo pequeño de términos que tomé como muestreo y generó correctamente los sinónimos.
+Por ejemplo, los sinónimos de "computer" son:
+computer, computing machine, computing device, data processor, electronic computer
+
+Además, creo que es necesario aplicar primero stemming y luego generar sinónimos, para reducir el número final de términos de un documento. Por ejemplo, si un documento tiene N términos que comparten su raíz. Entonces luego de aplicar stemming se reduce a uno sólo, y por lo tanto se generarían sinónimos para ese término en particular. De otra manera, se generarían sinónimos distintos para los N documentos, luego habría que aplicar stemming a todos los nuevos sinónimos, eliminar los stems duplicados... lo que provoca que el tiempo de generación del dataset se incremente bastante y que los documentos contengan demasiada información que terminaría perjudicando la clasificación.
+
+
+2) La mayoría de los documentos se encuentran en inglés, por lo tanto no tienen acentos. Los acentos presentes del dataset mayormente pertenecen a los tags colocados en Delicious (por usuarios de habla no-inglesa, supongo).
+WordNet no procesa palabras en inglés. Por lo tanto cualquier término con acento (significaría que no es inglés), no genera sinónimos. Ej. "computación" no tiene sinónimos.
+Los acentos igualmente deben eliminarse para poder ser procesados correctamente por los algoritmos de clasificación, ya que existen casos donde una palabra se encuentra algunas veces escrita con acento y otras no, lo que perjudica a la clasificación ya que se trata de dos términos diferentes (lógicamente hablando).
 
 ------------------------------------------------------------------
 
 Figura 5.3
 Otra vez no entiendo, porque volvés al codigo HTML? Y a aplicar los pasos que ya aplicaste antes? No sería generar sinonimos y después el procesamiento?
 
-Tenés razón, en la segunda parte del procesamiento (luego de generar los sinónimos) NO es necesario reemplazar el código HTML ya que es imposible que encuentre. De todas maneras, no influiría en la generación final del dataset (más allá de demorarse más tiempo en su procesamiento).
-De todas maneras, voy a quitar "Reemplazar código HTML", generar nuevamente el dataset y volver a correr el clasificador SMO.
+Tenés razón, en la segunda parte del procesamiento (luego de generar los sinónimos) NO es necesario reemplazar el código HTML ya que es imposible que encuentre. De todas maneras, no influiría en la generación final del dataset (más allá de demorarse más tiempo en su ejecución).
+De todas maneras, voy a quitar el procesamiento de "Reemplazar código HTML", generar nuevamente el dataset y volver a correr el clasificador SMO para estar seguro.
+Con respecto a los demás procesamientos (Eliminar acentos, Eliminar caracteres especiales, Stemming, Eliminar stop-words) si son necesarios ya que la generación de sinónimos introduce nuevos términos con acentos (muy pocos) y caracteres especiales, como así también variantes de una misma palabra (ej. computer, computation, etc) que deben ser llevadas a su raíz (con stemming).
 
 ------------------------------------------------------------------
 
 Figura 5.4
 Otra vez, como funciona el spell-checking después del stemming por ejemplo? No sería anterior?
 
-En este caso, todos los términos con errores ortográficos son llevados a su forma básica (stemming). Luego, cualquiera de los 3 spell-checkers utilizados chequea si la palabra es correcta o no sin importar si la palabra se encuentra 
+En este caso, todos los términos con errores ortográficos son llevados a su forma básica (stemming). Luego, cualquiera de los 3 spell-checkers utilizados chequea si la palabra es correcta sin importar si ésta se encuentra escrita en su forma raíz o no.
+Los algoritmos de spell-checker son bastante complejos en su ejecución. Por lo tanto, con aplicar stemming previamente lo que hago es reducir el número de términos de un documento, lo que haría que el spell-check tenga un menor número de palabras para procesar en cada documento. De otra manera, el spell-check debería lidear con un gran número de palabras lo que incrementaría notoriamente el tiempo de ejecución.
+Más allá de esta cuestión, creo que es correcto aplicar stemming antes de spell-check, ya que ...
