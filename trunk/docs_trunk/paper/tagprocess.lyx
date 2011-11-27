@@ -1,0 +1,3313 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass elsarticle
+\begin_preamble
+% specify here the journal
+\journal{Expert Systems with Applications}
+\usepackage{url}
+\end_preamble
+\use_default_options false
+\begin_modules
+theorems-std
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 0
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine natbib_authoryear
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle headings
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Evaluating Tag Filtering Techniques for Web Resource Classification in Folksonom
+ies
+\end_layout
+
+\begin_layout Author
+Nicolás Tourné
+\begin_inset Argument
+status collapsed
+
+\begin_layout Plain Layout
+exactas
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Daniela Godoy
+\begin_inset Flex CorAuthormark
+status open
+
+\begin_layout Plain Layout
+cor1
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument
+status collapsed
+
+\begin_layout Plain Layout
+isistan,conicet
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Corresponding author
+Corresponding author
+\begin_inset Argument
+status collapsed
+
+\begin_layout Plain Layout
+cor1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Address
+Faculty of Exact Sciences, UNICEN University, Campus Universitario, 7000,
+ Tandil, Bs.
+ As., Argentina
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+exactas
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Address
+ISISTAN Research Institute, UNICEN University, Campus Universitario, 7000,
+ Tandil, Bs.
+ As., Argentina
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+isistan
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Address
+CONICET, Bs.
+ As., Argentina
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+conicet
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+Social or collaborative tagging systems emerged as a novel classification
+ scheme on the Web based on the collective knowledge of people.
+ In sites such as 
+\emph on
+Del.icio.us
+\emph default
+, 
+\emph on
+Technorati
+\emph default
+ or 
+\emph on
+Flickr
+\emph default
+, users annotate a variety of resources, including Web pages, blogs, pictures,
+ videos or bibliographic references; using freely chosen textual labels
+ or tags.
+ Underlying collaborative tagging systems there are ternary data structures
+ known as folksonomies relating resources and users through tags, these
+ information facilitate accessing and browsing of massive resource repositories.
+ Collective annotations provided by people in the form of tags can also
+ be exploited to organize resources on-line in a more formal classification
+ scheme such as the ones provided by hierarchies or directories, alleviating
+ the task of manual classification commonly required by systems such as
+ directories on the Web.
+ In this paper we present an empirical study carried out to determine the
+ value of tags in resource classification.
+ Furthermore, the use of several filtering and pre-processing operations
+ to reduce the ambiguity and noise in tags are analyzed to determine whether
+ they allow to increase the quality of resource classification.
+\end_layout
+
+\begin_layout Keywords
+Web Resource Classification 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+sep
+\end_layout
+
+\end_inset
+
+ Social Tagging Systems 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+sep
+\end_layout
+
+\end_inset
+
+ Folksonomies
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Social tagging systems are one of the most popularized content sharing applicati
+ons associated with the emergent Web 2.0.
+ The practice of collectively create and manage tags to annotate and categorize
+ content, has achieved widespread success on the Web due to its simplicity.
+ In sites such as
+\emph on
+ Del.icio.us
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://del.icio.us/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, 
+\emph on
+Technorati
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://technorati.com/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ or 
+\emph on
+Flickr
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.flickr.com/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ users annotate heterogeneous resources, including Web pages, blog posts,
+ pictures or videos, using a freely chosen set of keywords or open-ended
+ tags.
+\end_layout
+
+\begin_layout Standard
+The tripartite data structure underlying collaborative tagging systems is
+ known as folksonomy
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "mathes2004folksonomies"
+
+\end_inset
+
+ and relates resources, tags and users.
+ The social classification scheme proposed by folksonomies contrasts with
+ traditional predefined taxonomies or directories found on the Web.
+ While a taxonomy offers a rigid scheme of hierarchical categories, commonly
+ established and populated with the help of human experts, folksonomies
+ relies on the convergence of tagging efforts of a large community of users
+ to a common categorization system that can be effectively used to organize
+ and navigate large information spaces.
+\end_layout
+
+\begin_layout Standard
+Although having different conceptions, both classification schemes coexist
+ and on the Web.
+ In fact, to effectively organize on-line information into categories, distribut
+ed classification provided by folksonomies might become an essential and
+ valuable source of information.
+ Thus, social tagging can help to automatize or assist the time consuming
+ and laborious task of manually classifying resources into a set of predefined
+ categories.
+ Moreover, social tags might enable the classification of resources with
+ not associated textual content such as pictures or videos.
+ Hammond et al.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Hammond2005"
+
+\end_inset
+
+ and Guy and Tonkin
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Tonkin2006"
+
+\end_inset
+
+ agree that tagging can plays a complimentary role alongside more formal
+ types of organization such as hierarchical catalogs.
+\end_layout
+
+\begin_layout Standard
+We carried out an empirical evaluation of using collaboratively generated,
+ open-ended tags, to categorize resources such as Web pages.
+ Experiments were based on a collection of pages categorized by experts
+ in a Web directory and the tag assignments given by non-expert users in
+ a folksonomy such as 
+\emph on
+CABS120k08
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{
+\end_layout
+
+\end_inset
+
+http://www.michael-noll.com/cabs120k08/
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Noll2008"
+
+\end_inset
+
+.
+ Multiple meta-data available was compared for obtaining representations
+ of resources and evaluated with different classifiers.
+\end_layout
+
+\begin_layout Standard
+One of the major problems related to folksonomies is the completely unsupervised
+ nature of tagging, leading to problems such as ambiguity and noise in textual
+ labels or tags.
+ Thus, syntactical variations are common and can be attributed to several
+ reasons, for example the use of synonyms, typographical misspellings and
+ grammatical variations.
+ The existence of tag variations not only causes an increase in the number
+ of features to be considered during learning, but also a reduction in the
+ performance of classifiers that considers them as different, independent
+ tags.
+ Consequently, other goal of this work is to evaluate tag pre-processing
+ operations to minimize the effects of syntactic variations in tags to increase
+ the quality of resource classification.
+ For this purpose, several filtering methods were evaluated over tags, including
+ the use of stemming, synonyms and misspelling correction.
+ 
+\end_layout
+
+\begin_layout Standard
+The rest of the paper is organized as follows.
+ Section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Related-Works"
+
+\end_inset
+
+ presents background as well as related works regarding classification of
+ Web resources based on social tags.
+ Section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Tag-based-Classification-of"
+
+\end_inset
+
+ presents the empirical analysis carried out to evaluate tag-based classificatio
+n of Web resources and experimental results.
+ Section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Evaluating-Tag-Processing"
+
+\end_inset
+
+ explores different processing operations to be performed over tags in order
+ to determine their utility to improve classification results.
+ Finally, Section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Conclusions"
+
+\end_inset
+
+ summarizes our findings.
+\end_layout
+
+\begin_layout Section
+Background and Related Works
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Related-Works"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Folksonomies are the primary structure of a social classification scheme
+ which relies on the convergence of tagging efforts of a large community
+ of users to a common categorization system that can be effectively used
+ to organize and navigate large information spaces.
+ This classification scheme is usually contrasted with the use of pre-defined
+ taxonomies.
+ Indeed, the term 
+\emph on
+folksonomy
+\emph default
+ is a blend of the words 
+\emph on
+taxonomy
+\emph default
+ and 
+\emph on
+folk
+\emph default
+, and stands for conceptual structures created by the people
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "hotho2006information"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Formally, a folksonomy can be defined as a tuple 
+\begin_inset Formula $\mathbb{F}:=\left(U,T,R,Y,\prec\right)$
+\end_inset
+
+ which describes the users 
+\begin_inset Formula $U$
+\end_inset
+
+, resources 
+\begin_inset Formula $R$
+\end_inset
+
+, and tags 
+\begin_inset Formula $T$
+\end_inset
+
+, and the user-based assignment of tags to resources by a ternary relation
+ between them, i.e.
+ 
+\begin_inset Formula $Y\subseteq U\times T\times R$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "hotho2006information"
+
+\end_inset
+
+.
+ In this folksonomy, 
+\begin_inset Formula $\prec$
+\end_inset
+
+ is a user-specific sub-tag/super-tag-relation possible existing between
+ tags, i.e.
+ 
+\begin_inset Formula $\prec\subseteq U\times T\times T$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The collection of all tag assignments of a single user constitute a 
+\emph on
+personomy
+\emph default
+, i.e.
+ the personomy 
+\begin_inset Formula $\mathbb{P}_{u}$
+\end_inset
+
+ of a given user 
+\begin_inset Formula $u\in U$
+\end_inset
+
+ is the restriction of 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+ to 
+\begin_inset Formula $u$
+\end_inset
+
+, i.
+ e., 
+\begin_inset Formula $\mathbb{\mathbb{P}}_{u}:=\left(T_{u},R_{u},I_{u},\prec_{u}\right)$
+\end_inset
+
+ with 
+\begin_inset Formula $I_{u}:=\left\{ \left(t,r\right)\in T\times R\left|\left(u,t,r\right)\in Y\right.\right\} $
+\end_inset
+
+, 
+\begin_inset Formula $T_{u}:=\pi_{1}\left(I_{u}\right)$
+\end_inset
+
+, 
+\begin_inset Formula $R_{u}:=\pi_{2}\left(I_{u}\right)$
+\end_inset
+
+, and 
+\begin_inset Formula $\prec_{u}:=\left\{ \left(t_{1},t_{2}\right)\in T\times T\left|\left(u,t_{1},t_{2}\right)\in\prec\right.\right\} $
+\end_inset
+
+, where 
+\begin_inset Formula $\pi_{i}$
+\end_inset
+
+ the projection on the 
+\emph on
+i
+\emph default
+th dimension.
+ In social tagging systems, tags are used to organize information, which
+ is also shared, within a personal information space.
+ Thus, other users can access a user personomy by browsing and searching
+ the entire folksonomy using the available tags.
+\end_layout
+
+\begin_layout Standard
+In addition to facilitate searching and browsing heterogeneous resources
+ in folksonomies, tags can provide valuable information for other tasks
+ such as classification, clustering
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Ramage2009,Lu2011"
+
+\end_inset
+
+ and recommendation of resources
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "carmagnola2007towards,tsosutter2008tag,Sen2009,Symeonidis2010,Zheng2011"
+
+\end_inset
+
+.
+ Particularly, we will address the problem of tag-based classification to
+ determine the categories a set of resources belong to in a standard (flat
+ or hierarchical) classification scheme.
+ The possibility of exploiting the collective knowledge encapsulated in
+ social tags for classification of resources into general directories or
+ hierarchical categories is a problem that has been recently addressed in
+ several works.
+ 
+\end_layout
+
+\begin_layout Standard
+Noll and Meinel
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Noll2008"
+
+\end_inset
+
+ study and compare three different annotations provided by readers of Web
+ documents, social annotations, hyperlink anchor texts and search queries
+ of users trying to find Web pages.
+ 
+\emph on
+CABS120k08
+\emph default
+ dataset, also used in this work, was created for such study from sources
+ such as 
+\emph on
+AOL500k
+\emph default
+, the Open Directory Project
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{
+\end_layout
+
+\end_inset
+
+http://www.dmoz.org/
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ (ODP), 
+\emph on
+Del.icio.us
+\emph default
+ and 
+\emph on
+Google
+\emph default
+ in general.
+ The results of this study suggest that tags seem to be better suited for
+ classification of Web documents than anchor words or search keywords, whereas
+ the last ones are more useful for information retrieval.
+ In a further study
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Noll2008a"
+
+\end_inset
+
+, the same authors analyzed at which hierarchy depth tag-based classifiers
+ can predict a category using 
+\emph on
+DMOZ100k06
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://www.michael-noll.com/wiki/DMOZ100k06
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ dataset with information from ODP and 
+\emph on
+Del.icio.us.
+
+\emph default
+ It was concluded that tags may perform better for broad categorization
+ of documents rather than for narrow categorization.
+ Thus, classification of pages in categories at inferior hierarchical levels
+ might require content analysis.
+\end_layout
+
+\begin_layout Standard
+Zubiaga et al.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Zubiaga2009"
+
+\end_inset
+
+ explore the use of Support Vector Machines (SVM) in the 
+\emph on
+Social-ODP-2k9
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://nlp.uned.es/social-tagging/socialodp2k9/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ dataset created with data retrieved from 
+\emph on
+Del.icio.us, StumbleUpon
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{
+\end_layout
+
+\end_inset
+
+http://www.stumbleupon.com/
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, the ODP and the Web.
+ In this work additional resource meta-data such as notes and reviews were
+ evaluated in addition to tagging activity.
+ Tags and comments obtained promising results in Web page classification.
+ Moreover, if the motivation for tagging is considered it was found that
+ users can be discriminated as categorizers or describers
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Korner2010"
+
+\end_inset
+
+, having the tags assigned for the first type of users a greater utility
+ for classification as was demonstrated in
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Zubiaga2011"
+
+\end_inset
+
+.
+ In
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Godoy2010"
+
+\end_inset
+
+ multiple classifiers as well as the impact of some pre-processing techniques
+ over tags were analyzed over the same dataset showing the superiority of
+ SVMs.
+ Aliakbary et al.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Aliakbary2009"
+
+\end_inset
+
+ propose a method for describing both Web pages and categories in terms
+ of associated tags, and then to assign the resource to the category with
+ the most similar tag-space representation.
+ Experiments carried out with a set of Web pages from the 
+\emph on
+Computers
+\emph default
+ category of ODP showed that the method behave better than content-based
+ classification.
+\end_layout
+
+\begin_layout Standard
+In these studies tags demonstrate to be an important source of information
+ for categorization, beyond the textual content of resources.
+ Other works address the same problem but from a personal point of view,
+ using social tags to classify resources for a individual user instead of
+ organizing resources in general taxonomies or directories.
+ Vatturi et al.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Vatturi2008"
+
+\end_inset
+
+ create a personalized tag- based recommender for each user consisting of
+ two naïve Bayes classifiers trained over different time frames.
+ One classifier predicts the user current interest based on a shorter time
+ interval and the other classifier predicts the user general interest in
+ a bookmark considering a longer time interval.
+ If any classifier predicts the bookmark as interesting, it is recommended.
+ The user study results show that the tag-based recommender performs well
+ with real data using tags from an enterprise social bookmarking system.
+ The role of social tags in the identification of interesting resources
+ for a given user was also studied in
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Godoy2010a"
+
+\end_inset
+
+ using one-class SVMs since they show better performance than other classifiers
+ in the task stated
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Godoy2011a"
+
+\end_inset
+
+.
+ In all the mentioned works, tag-based classification improves the results
+ of content-based classification.
+\end_layout
+
+\begin_layout Section
+Tag-based Classification of Web Resources
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Tag-based-Classification-of"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This section describes the empirical study carried out to evaluate tag-based
+ classification of resources.
+ The dataset employed for experimentation is described in Subsection
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Dataset-Description"
+
+\end_inset
+
+, the different information sources considered to represent documents are
+ detailed in Subsection
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Web-Document-Representation"
+
+\end_inset
+
+ and the results of using different classifiers and Web resource representations
+ are summarized in Subsection
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Classification-Results"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Dataset Description
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Dataset-Description"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+CABS120k08
+\emph default
+ is a dataset for research in Web 2.0 consisting of 117,434 documents with
+ associated meta-data collected from multiple sources.
+ Meta-data consists of an intersection of the AOL Search query log corpus
+ 
+\emph on
+AOL500k
+\emph default
+ and the Open Directory Project (ODP), self-defined as the largest, most
+ comprehensive human-edited directory of the Web.
+\end_layout
+
+\begin_layout Standard
+Meta-data associated to documents obtained from different sources help to
+ gain more knowledge about them.
+ Particularly, the dataset compile several views of the documents: social
+ annotations provided by readers of Web pages, hyperlink anchor text provided
+ by authors of these documents, and search queries of users trying to find
+ them on the Web.
+ In addition, documents have been categorized in one or more categories
+ from ODP, offering the hierarchical paths within the directory.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+AOL500k
+\emph default
+ corpus is one of the largest publicly available collections of search queries
+ today
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Pass2006"
+
+\end_inset
+
+.
+ It consists of 20 million web queries collected from 650,000 users on AOL
+ Search over three months in 2006.
+ 
+\emph on
+CABS120k08
+\emph default
+ was created by an intersection of 
+\emph on
+AOL500k
+\emph default
+ and the Open Directory.
+ Thus, only documents that were both searched for and subsequently visited
+ (AOL500k) as well as categorized (Open Directory) were included.
+ Table
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Summary-of-CABS120k08"
+
+\end_inset
+
+ summarizes 
+\emph on
+CABS120k08
+\emph default
+ stats.
+ 
+\end_layout
+
+\begin_layout Standard
+It can observed in the table that all documents have an ODP category, whereas
+ 50.3% have been found in 
+\emph on
+Del.icio.us
+\emph default
+ and a few of them have not tag assigned.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+tags
+\emph default
+:
+\emph on
+ 
+\emph default
+include the full history of a social bookmark, this for each document in
+ the dataset its full bookmarking history from HTML Web pages crawled from
+ 
+\emph on
+Del.icio.us
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+anchor texts
+\emph default
+:
+\emph on
+ 
+\emph default
+defined as the text that appears within the bounds of an 
+\emph on
+HTML <a>
+\emph default
+ tag.
+ In the dataset, up to 100 referring pages per document were processed.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+queries
+\emph default
+: refers to all queries used in 
+\emph on
+AOL500k
+\emph default
+ corpus in which a given Web pages was present in the result set.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="13" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="right" valignment="top" width="0">
+<column alignment="right" valignment="top" width="0">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size footnotesize
+Overview
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size footnotesize
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size footnotesize
+Comment
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Total documents
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+117,434
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Total categories
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+84,663
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Total searches
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+2,617,326
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Total anchor texts
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+2,242,621
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Total users
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+3,383,571
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Total bookmarks
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+1,289,563
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+unique: 9.1 %
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Total tags
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+3,383,571
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+unique: 26.3 %
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Categorized documents
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+117,434
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+100.0 %
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Searched documents
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+117,434
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+100.0 %
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Anchored documents
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+95,230
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+81.1 %
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Bookmarked documents
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+59,126
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+50.3 %
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+Tagged documents
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+56,457
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size footnotesize
+48.1 %
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Summary of 
+\emph on
+CABS120k08
+\emph default
+ corpus
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Summary-of-CABS120k08"
+
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Noll2008"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Web Resource Representation
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Web-Document-Representation"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The three different information sources were evaluated as a means to represent
+ documents both alone (tags, query terms and anchor texts), all of the sources
+ combined (queries+anchortexts+tags) and three other combinations (queries+ancho
+rtexts, queries+tags, anchortexts+tags).
+ In the resulting datasets, stop-words were removed using a list of 600
+ words o English language, Porter stemming algorithm
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citet
+key "porter80algorithm"
+
+\end_inset
+
+ was applied (the use of stemming is discussed in Section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Evaluating-Tag-Processing"
+
+\end_inset
+
+) and binary weights were assigned to terms.
+\end_layout
+
+\begin_layout Standard
+In addition, the performance of two classifiers was compared for the classificat
+ion in this task, Naïve Bayes and SMO from 
+\emph on
+Weka
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{
+\end_layout
+
+\end_inset
+
+http://www.cs.waikato.ac.nz/ml/weka/
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ library of machine learning algorithms.
+ SMO is a sequential minimal optimization algorithm for training a Support
+ Vector Machines (SVM) classifier using a polynomial kernel (PolyKernel)
+ or a radial basis function (RBFKernel) kernel.
+\end_layout
+
+\begin_layout Standard
+For evaluating the classifiers we used the standard precision and recall,
+ summarized by F-measure, and accuracy
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Baeza-Yates1999"
+
+\end_inset
+
+.
+ Accuracy measures the proportion of correct decisions made by classifiers.
+ Precision is the number of correct classified examples divided by the number
+ of examples classified as belonging to the class and recall is the number
+ of correct classified examples divided by the number of examples belonging
+ to the class.
+ In all experiments, the results of 10-fold cross-validation are reported.
+\end_layout
+
+\begin_layout Subsection
+Tag-based Classification Results
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Classification-Results"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Figures
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:classification-accuracy"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:classification-fmeasure"
+
+\end_inset
+
+ shows the results achieved using the mentioned Web page representations
+ and classifiers in terms of accuracy and F-Measure, respectively.
+ With respect to the meta-data used to represent the Web pages, it can be
+ observed in both figures that tag-based representations obtained better
+ results that anchor-texts and queries, the last ones showing the poorest
+ performance.
+ Consequently, these element also affects negativity the performance of
+ those combinations in which queries included (queries+anchortexts, queries+tags
+ and queries+anchortexts+tags).
+ In most cases the combination of anchor-texts and tags outperforms the
+ remaining ones.
+ Among the classifiers, naïve Bayes performance was inferior to the two
+ SMO variants, being PolyKernel the one reaching the highest accuracy and
+ F-Measure scores.
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolution-of-accuracy"
+
+\end_inset
+
+ depicts the evolution of accuracy as the size of the training size increases
+ for the SMO PolyKernel classifier.
+ Confirming previous results, the use of anchor-texts and tags is the one
+ obtaining the best results, closely followed by the use of tags alone.
+ We considered the results obtained with the anchortexts+tags representations
+ as baseline for evaluating tag processing operations in the following section.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename clasif_fmeasure.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Accuracy obtained using different representations and classifiers
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:classification-accuracy"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename clasif_fmeasure.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+F-Measure scores obtained using different representations and classifiers
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:classification-fmeasure"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename clasif_evol.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Evolution of accuracy as the number of training examples increases
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolution-of-accuracy"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Evaluating Tag Processing Approaches
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Evaluating-Tag-Processing"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In social classification schemes, tags are noisy and inconsistent as they
+ are not introduced according to a controlled vocabulary.
+ Variations in tags can be attributed to several factors
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Tonkin2006,Echarte2008"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+compound words consisting of more than two words that are not grouped consistent
+ly.
+ Often users insert punctuation to separate the words, for example 
+\emph on
+ancient-egypt
+\emph default
+, 
+\emph on
+ancient
+\emph default
+_
+\emph on
+egypt
+\emph default
+ and 
+\emph on
+ancientgypt;
+\end_layout
+
+\begin_layout Itemize
+use of symbols in tags, symbols such as # , - , + , /, : _, &,! are frequently
+ used at the beginning of tags to cause some incidental effect such as forcing
+ the interface to list some tag at the top of an alphabetical listing;
+\end_layout
+
+\begin_layout Itemize
+the grammatical number used (singular or plural) and verbal times (gerunds,
+ past and other forms), for example, 
+\emph on
+blog
+\emph default
+, 
+\emph on
+blogs
+\emph default
+ and 
+\emph on
+blogging;
+\end_layout
+
+\begin_layout Itemize
+typographical misspellings during the tagging process for example, 
+\emph on
+semantic Web
+\emph default
+ and 
+\emph on
+semntic Web
+\emph default
+; 
+\end_layout
+
+\begin_layout Itemize
+synonyms are different words used to express a same concept involved in
+ an annotation or tag.
+ 
+\end_layout
+
+\begin_layout Standard
+The reduction of these syntactic tag variations might help to improve the
+ quality of folksonomies and, in turn, the classification of resources.
+ Since tags shown to be valuable source of information for Web page classificati
+on, several filtering techniques were considered and compared in this work
+ in order to determine whether they can help to improve classification results.
+\end_layout
+
+\begin_layout Standard
+Experimental evaluation with a dataset extracted from a widely used folksonomy,
+ such as 
+\emph on
+Del.icio.us
+\emph default
+, was carried out to determine the effect of different processing operations
+ over tags tending to normalize them and avoid the mentioned problems.
+ Initially, raw tags were filtered to remove the symbols mentioned before
+ as well as join compound words in a first processing considered.
+ Then, three operations were considered as it is depicted in Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:steps"
+
+\end_inset
+
+.
+ Misspelling correction to correct typing errors, synonyms to considered
+ other words with the same meaning and stemming to correct morphological
+ variants cause by grammatical number and verbal forms.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename drawing.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Filtering process to improve Web page representations
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:steps"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The capacity of each of these operations for improving Web page classification
+ was evaluated separately.
+ The results shown in Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolution-of-accuracy"
+
+\end_inset
+
+ for the anchortexts+tags representation of resources was established as
+ baseline.
+ Then, each pre-processing operation was applied and the classification
+ results compared against the baseline.
+ The following sub-sections explains each of these operations and the results
+ obtained.
+\end_layout
+
+\begin_layout Subsection
+Stemming
+\end_layout
+
+\begin_layout Standard
+In most languages, words have many morphological variants with similar semantic
+ interpretations which can be treated as equivalents for information retrieval,
+ as opposed to linguistic applications.
+ For example, the words 
+\emph on
+computer
+\emph default
+, 
+\emph on
+computers
+\emph default
+, 
+\emph on
+compute
+\emph default
+, 
+\emph on
+computes
+\emph default
+, 
+\emph on
+computed
+\emph default
+, 
+\emph on
+computational
+\emph default
+, 
+\emph on
+computationally
+\emph default
+ and 
+\emph on
+computable
+\emph default
+ would be reduced to the single word stem 
+\emph on
+comput
+\emph default
+.
+ Thus, the dimensionality of the feature space can be reduced by mapping
+ morphologically similar words onto their word stem.
+ 
+\end_layout
+
+\begin_layout Standard
+This task is performed by stemming or conflation algorithms which are defined
+ as processes of linguistic normalization in which morphological variants
+ of words are reduced to their root form, called stem
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "porter80algorithm"
+
+\end_inset
+
+.
+ The most common form of stemming is the elimination of suffixes and/or
+ prefixes, such as the one used in Porter algorithm
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "porter80algorithm"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In spite of the benefits stemming algorithms can provide, stemmers can lead
+ to a number of errors.
+ These errors correspond to words with different meanings that are conflated
+ to the same stem, which is known as over-stemming error.
+ Also, stemming errors are caused by words with similar meanings that are
+ converted into two different stems, which is known as under-stemming error.
+\end_layout
+
+\begin_layout Standard
+To evaluate whether stemming improves the result of tag-based Web page classific
+ation, the use of stemming was compared in the same data without stemming.
+ The results shown in the previous section were obtained using stemming.
+ Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:stemming"
+
+\end_inset
+
+ compares the results obtained as the size of the training size increases
+ without using stemming with the results achieve before.
+ Clearly, the use of stemming improves significantly the results of Web
+ resource classification.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename stemming.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Accuracy of classification using stemming
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:stemming"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Synonyms
+\end_layout
+
+\begin_layout Standard
+In addition to syntactic variations of a same word, several word synonyms
+ can be used by different users to annotate a resource.
+
+\emph on
+ WordNet
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{
+\end_layout
+
+\end_inset
+
+http://wordnet.princeton.edu/
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Miller1995"
+
+\end_inset
+
+, a large lexical database of English language, was used to obtained tag
+ synonyms.
+ In 
+\emph on
+WordNet
+\emph default
+ English words are grouped into sets of synonyms called synsets, belonging
+ to different categories (nouns, verbs, adjectives and adverbs), and it
+ records various semantic relations between these synonym sets.
+\end_layout
+
+\begin_layout Standard
+For each tag, synonyms were extracted from 
+\emph on
+WordNet
+\emph default
+ and added to the Web page representation, so that the meaning of tags is
+ enriched.
+ Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:synonyms"
+
+\end_inset
+
+ shows the comparison of Web page classification results using synonyms
+ with respect to the baseline.
+ The incorporation of synonyms in the representation of examples causes
+ a degradation of classification performance.
+ The inferior performance of classifiers using synonyms can be attributed
+ to the lack of context to disambiguate tag meaning and the consequent incorpora
+tion of noise to tagging activity.
+ Other semantic operations over tags should be analyzed to be considered
+ in the context of resource classification for gleaning semantically richer
+ resource representations
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand citep
+key "Garcia-Silva2011"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename sinonimos.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Accuracy of classification using synonyms
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:synonyms"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Misspelling Correction
+\end_layout
+
+\begin_layout Standard
+In this work, spell-checking is performed using three libraries based on
+ different algorithms and dictionaries: 
+\emph on
+Tumba!
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{
+\end_layout
+
+\end_inset
+
+http://xldb.fc.ul.pt/wiki/Tumba!
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, 
+\emph on
+JaSpell!
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{
+\end_layout
+
+\end_inset
+
+http://jaspell.sourceforge.net/
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ and 
+\emph on
+Hunspell
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{
+\end_layout
+
+\end_inset
+
+http://hunspell.sourceforge.net/
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ The spell-checker was applied to each tag and those wrongly written were
+ replaced by correctly spelled ones suggested by each algorithm.
+ If there is not suggested word to replace a misspelled tag, likely because
+ the tag does not exist in the spell-checker dictionary, the tag is discarded.
+ 
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:spelling"
+
+\end_inset
+
+ shows the result of Web page classification using the spell-checkers.
+ Clearly, the use of any of the three algorithms results in an improvement
+ of classification accuracy.
+ 
+\emph on
+JaSpell
+\emph default
+ seems to have a slight advantage with respect to the other two spell-checkers
+ in this regard.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename speller.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Accuracy of classification after checking spelling
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:spelling"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The previous approach for processing misspelled words imply a loss of informatio
+n as many tags were discarded (approximately 12%) when no suggestion was
+ found to replaced them.
+ However, a better treatment of such tags can lead to a further improvement
+ in classification results.
+ We observed that most of the eliminated tags corresponds to either abbreviation
+s or non-English words.
+ Then, both cases were considered to define an enhanced misspelling correction
+ method.
+\end_layout
+
+\begin_layout Standard
+Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Filtering-process-to"
+
+\end_inset
+
+ illustrates the resulting enhanced method for misspelling correction.
+ Misspelled tags for which the spell-checker do not have any suggestion
+ to offer, are first checked against a list to see if they correspond to
+ an abbreviation.
+ The Oxford English Dictionary: List of Abbreviations
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{http://www.indiana.edu/~letrs/help-services/QuickGuides/oed-abbr.html}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ was used for these experiments.
+ For terms not found in this list of abbreviations, available translations
+ are looked for.
+ The 
+\emph on
+Google API Translate Java
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+url{
+\end_layout
+
+\end_inset
+
+http://code.google.com/p/google-api-translate-java/
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ was employed for this task.
+ Translated tags as well as expanded abbreviations are back to check of
+ removing characters and stop-words that might have been incorporated in
+ this process.
+ If no translation is found, the tag is finally discarded.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename drawing-enhanced.eps
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Filtering process to improve Web page representations with enhanced misspelling
+ correction
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Filtering-process-to"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The results of Web resource classification using the enhanced method for
+ misspelling correction are depicted in Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:spelling-mejorado"
+
+\end_inset
+
+.
+ Classification accuracy improves with the expansion of abbreviations and
+ translation of non-English words as approximately 1.7% were recovered using
+ this method.
+ Table
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Summary-of-classification"
+
+\end_inset
+
+ summarizes the results of all of the proposed filtering or pre-processing
+ operations evaluated for tags in terms of precision, recall and F-Measure.
+ Each row shows the results with respect to the baseline in the first row
+ of the table.
+ In bold, the best results were obtained with the enhanced method for misspellin
+g correction is applied.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename speller_mejorado.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Accuracy of classification using misspelling correction
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:spelling-mejorado"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="4">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size scriptsize
+Pre-processing operation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size scriptsize
+Precision
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size scriptsize
+Recall
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size scriptsize
+F-Measure
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Baseline
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+64.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+64.3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+64.5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Without stemming
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+59.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+57.6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+58.6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Synonyms
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+58.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+56.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+57.6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Simple Misspelling correction (JaSpell)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+76.0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+73.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+74.7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Enhanced Misspelling correction
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size scriptsize
+76.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size scriptsize
+74.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size scriptsize
+75.5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Summary of classification results
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Summary-of-classification"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusions
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Conclusions"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Social tags consist in collective knowledge stored in the folksonomies collabora
+tive tagging systems are based on, which is mostly used to easy access and
+ browse shared resources.
+ However, the use of tags for classifying resources can also help to bridge
+ the gap between the strict structure of taxonomies and the completely open
+ nature of folksonomies.
+ Organizing on-line resources into a set of flat or hierarchical categories
+ based on the tags assigned to them by users is a valuable tool for reducing
+ the effort required to create catalogs, such as Web directories, commonly
+ done by human experts.
+ Moreover, it becomes essential for the classification of non-textual resources
+ for which content-based classification is not possible (e.g.
+ pictures or videos).
+ Other prominent application in which social tagging can be exploiting is
+ personalized Web classification, for identifying example, interesting/uninteres
+ting Web pages.
+\end_layout
+
+\begin_layout Standard
+Experiments were carried out using a standard dataset in the area providing
+ multiple meta-data information about Web resources such as query terms,
+ anchor-texts and tags.
+ First, baseline results were obtained by comparing the scores achieved
+ using the mentioned meta-data alone and combined with each other to represent
+ resources and several classification algorithms.
+ Second, pre-processing operations were evaluated to improve the quality
+ of classification by reducing ambiguity and noise in tags.
+ The use of stemming to reduce morphological variations have a positive
+ impact in classification as well as misspelling correction, achieving the
+ best results with a enhanced misspelling correction that considers the
+ expansion of abbreviations and the translation of non-English tags.
+ In contrast, the simple incorporation of synonyms to resource representations
+ degrades the performance of classifiers.
+ Other methods to add semantics to tags need to be explored in this direction
+ and are planned to be investigated in future works.
+\end_layout
+
+\begin_layout Section*
+Acknowledgments
+\end_layout
+
+\begin_layout Standard
+This research was supported by the National Scientific and Technical Research
+ Council (CONICET) under grant PIP No.
+ 114-200901-00381.
+\end_layout
+
+\begin_layout Section*
+References
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "tagprocess"
+options "bibtotoc,elsarticle-num"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
